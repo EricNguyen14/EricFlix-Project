@@ -290,13 +290,15 @@ input::-webkit-input-placeholder {
 -------- HEADER AREA CSS START --------
 ---------------------------------------*/
 .header {
-  background-color: black;
+  height: 140px;
+  background-color: #262832;
   padding: 18px 0;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 99;
+  transform: translateY(-10px);
 }
 .header-area {
   display: grid;
@@ -304,13 +306,16 @@ input::-webkit-input-placeholder {
   grid-template-columns: repeat(12, 1fr);
   align-items: center;
   grid-gap: 20px;
+  transform: translateY(-20px);
 }
 .logo {
   grid-column: span 2;
   grid-row: span 2;
   padding-right: 15px;
+  transform: translateY(-15px);
 }
 .header-right {
+  margin-top: 40px;
   grid-column: span 10;
   text-align: right;
   display: flex;
@@ -318,6 +323,7 @@ input::-webkit-input-placeholder {
 }
 
 .menu-area {
+  transform: translateY(-30px);
   grid-column: span 10;
 }
 .mainmenu {
