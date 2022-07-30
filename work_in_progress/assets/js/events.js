@@ -30,21 +30,15 @@ funcViewArticle = (id, title, thumb, link) => {
   showArticleViewed();
 };
 funcFavNews = (id, title, thumb, link) => {
-  $("#fav-news img").css(
-    'src="https://img.icons8.com/carbon-copy/100/000000/filled-like.png"/>'
-  );
   let favs = [];
   if (localStorage.getItem("FAV_NEWS") === null) {
     favs = addFavs(id, title, thumb, link);
-    console.log("===");
   } else {
-    const favs = listFavs().map((item, index) => {
-      if (item.id === id) {
+    const favs = listFavs().map((fav) => {
+      if (fav.id === id) {
         deleteFavs(id);
-        console.log("---- delete");
       } else {
         addFavs(id, title, thumb, link);
-        console.log("---- add");
       }
     });
   }
