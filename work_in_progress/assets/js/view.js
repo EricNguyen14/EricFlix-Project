@@ -1,0 +1,333 @@
+showCategoriesInMenu = () => {
+  let elmAreaCategoryNews = $("ul#news");
+  const API_PREFIX = "http://apiforlearning.zendvn.com/api/";
+  $.getJSON(API_PREFIX + "categories_news", function (data) {
+    console.log(data, "hoho");
+    let xhtml = "";
+    $.each(data, function (key, val) {
+      xhtml += `<li><a href="category.html?id=${val.id}">- ${val.name}</a></li>`;
+    });
+    elmAreaCategoryNews.html(xhtml);
+  });
+};
+showNewsInCategories = () => {
+  let urlID = $.urlParam("id");
+  let elemAreaCategoryNewsDetail = $("#news-details");
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/categories_news/" +
+      urlID +
+      "/articles?offset=0&limit=10&sort_by=id&sort_dir=desc",
+    function (data) {
+      let xhtml = "";
+
+      $.each(data, function (key, val) {
+        // let year = val.publish_date.getFullYear();
+        // let month = val.publish_date.getMonth() + 1;
+        // let date = month + year;
+        // console.log(date);
+        xhtml += `<div class="col-lg-12">
+  				<div class="single-news" >
+         
+  					 <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
+           
+  					</div>
+            <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
+            <a href="#"><img src="https://img.icons8.com/emoji/48/000000/white-heart.png"/></a>
+            
+            </div>
+  					<div class="news-date">
+
+  						<h1>
+              
+              ${val.publish_date}
+              </h1>
+  					</div>
+  					<div class="news-content">
+            
+  						<h2>
+              <a href="${val.link}" target=blank; onClick="funcViewArticle('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
+              ${val.title}
+             </a>
+              </h2>
+            
+  						<p>${val.description}</p>
+  					</div>
+  				
+  				</div>
+  				</div>
+
+  			`;
+      });
+
+      elemAreaCategoryNewsDetail.html(xhtml);
+    }
+  );
+};
+showGoldPrices = () => {
+  let elemGoldPrice = $("#gold-price");
+  $.getJSON("http://apiforlearning.zendvn.com/api/get-gold", function (data) {
+    let xhtml = "";
+    $.each(data, function (key, val) {
+      xhtml += `
+     
+      <tr>    
+                <td>${val.type}</td>
+                <td>${val.buy}.000 VNĐ</td>
+                <td>${val.sell}.000 VNĐ</td>
+              </tr>
+			
+
+			`;
+    });
+
+    elemGoldPrice.html(xhtml);
+  });
+};
+showCoinPrices = () => {
+  let elemCoinPrice = $("#coin-price");
+  $.getJSON("http://apiforlearning.zendvn.com/api/get-coin", function (data) {
+    let xhtml = "";
+    $.each(data, function (key, val) {
+      val.price = val.price.toLocaleString();
+      val.percent_change_24h = val.percent_change_24h.toFixed(2);
+      let classPrice = val.percent_change_24h > 0 ? "green" : "red";
+      console.log(classPrice);
+      xhtml += `
+       
+        <tr>    
+                  <td>${val.name}</td>
+                  <td>${val.price}$</td>
+                  <td  class="sell-${classPrice}">
+                  ${val.percent_change_24h}%
+                  </td>
+                  
+                </tr>
+        
+  
+        `;
+    });
+
+    elemCoinPrice.html(xhtml);
+  });
+};
+showArticleViewed = (data) => {
+  let elemViewedNews = $("#viewed-news");
+  let xhtml = "";
+
+  $.each(data, function (key, val) {
+    xhtml += `
+    
+    <div class="col-lg-12" >
+    
+    <div class="news-bg-1" style=" background:url(${val.thumb});"></div>
+    <input type="hidden" id="${val.id}">
+    <div class="news-date1" onclick="funcDeleteTask('${val.id}')"> 
+            <a href="#" >
+             xóa</a>
+            </div>
+            <div class="news-content">
+              <h2>${val.title}</h2>
+              <p>
+               
+              </p>
+            </div>
+            <a href="${val.link}" target=blank;>Đọc tiếp</a>
+          </div>
+          </div>
+          
+      </div>
+    
+      `;
+  });
+  elemViewedNews.html(xhtml);
+};
+
+showFavNews = (data1) => {
+  let elemFavNews = $("#fav-news");
+  let xhtml = "";
+
+  $.each(data1, function (key, val) {
+    xhtml += `<div class="col-lg-12">
+      <div class="single-news" >
+     
+         <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
+       
+        </div>
+        </div>
+            <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
+              <a href="#"><img src="https://img.icons8.com/emoji/48/000000/heart-suit.png"/></a>
+            
+            </div>
+        
+        <div class="news-content">
+        
+          <h2>
+          <a href="${val.link}" target=blank;  >
+          ${val.title}
+         </a>
+          </h2>
+        
+          <a  href=${val.link}> Đọc thêm</a>
+        </div>
+      
+      </div>
+      </div>
+
+    `;
+  });
+  elemFavNews.html(xhtml);
+};
+
+showNews1 = () => {
+  let elemSportNews = $("#news-1");
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/categories_news/3/articles?offset=0&limit=4&sort_by=id&sort_dir=desc",
+    function (data) {
+      console.log(data);
+      let xhtml = "";
+
+      $.each(data, function (key, val) {
+        xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
+      <div class="single-portfolio">
+      <div class="single-portfolio-img">
+      <img
+      src="${val.thumb}"
+      alt="portfolio"
+    />
+    <a
+      href="${val.link}" target=blank
+      class="popup-youtube"
+    >
+      <i class="icofont icofont-ui-play"></i>
+          </a>
+      </div>
+        <div class="portfolio-content">
+         <h2>${val.title}</h2>
+        <div class="review">
+      
+      <a href="${val.link}"> Đọc thêm</a>
+    </div>
+  </div>
+</div>
+</div>`;
+      });
+      elemSportNews.html(xhtml);
+    }
+  );
+};
+
+showNews2 = () => {
+  let elemNews2 = $("#news-2");
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/categories_news/2/articles?offset=0&limit=4&sort_by=id&sort_dir=desc",
+    function (data) {
+      console.log(data);
+      let xhtml = "";
+
+      $.each(data, function (key, val) {
+        xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
+      <div class="single-portfolio">
+      <div class="single-portfolio-img">
+      <img
+      src="${val.thumb}"
+      alt="portfolio"
+    />
+    <a
+      href="${val.link}" target=blank
+      class="popup-youtube"
+    >
+      <i class="icofont icofont-ui-play"></i>
+          </a>
+      </div>
+        <div class="portfolio-content">
+         <h2>${val.title}</h2>
+        <div class="review">
+      
+      <a href="${val.link}"> Đọc thêm</a>
+    </div>
+  </div>
+</div>
+</div>`;
+      });
+      elemNews2.html(xhtml);
+    }
+  );
+};
+
+showNews3 = () => {
+  let elemNews3 = $("#news-3");
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/categories_news/1/articles?offset=0&limit=4&sort_by=id&sort_dir=desc",
+    function (data) {
+      console.log(data);
+      let xhtml = "";
+
+      $.each(data, function (key, val) {
+        xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
+      <div class="single-portfolio">
+      <div class="single-portfolio-img">
+      <img
+      src="${val.thumb}"
+      alt="portfolio"
+    />
+    <a
+      href="${val.link}" target=blank
+      class="popup-youtube"
+    >
+      <i class="icofont icofont-ui-play"></i>
+          </a>
+      </div>
+        <div class="portfolio-content">
+         <h2>${val.title}</h2>
+        <div class="review">
+      
+      <a href="${val.link}"> Đọc thêm</a>
+    </div>
+  </div>
+</div>
+</div>`;
+      });
+      elemNews3.html(xhtml);
+    }
+  );
+};
+
+showNews4 = () => {
+  let elemNews4 = $("#news-4");
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/categories_news/6/articles?offset=0&limit=4&sort_by=id&sort_dir=desc",
+    function (data) {
+      console.log(data, "hihi");
+      let xhtml = "";
+
+      $.each(data, function (key, val) {
+        xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
+        
+      <div class="single-portfolio">
+      <div class="single-portfolio-img">
+      <img
+      src="${val.thumb}"
+      alt="portfolio"
+    />
+    <a
+      href="${val.link}" target=blank
+      class="popup-youtube"
+    >
+      <i class="icofont icofont-ui-play"></i>
+          </a>
+      </div>
+        <div class="portfolio-content">
+         <h2>${val.title}</h2>
+        <div class="review">
+      
+      <a href="${val.link}"> Đọc thêm</a>
+    </div>
+  </div>
+</div>
+</div>`;
+      });
+      elemNews4.html(xhtml);
+      console.log(xhtml, "===");
+    }
+  );
+};
