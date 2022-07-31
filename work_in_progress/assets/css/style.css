@@ -1598,7 +1598,14 @@ h3 {
     bottom: 100%;
   }
 }
+#fav-news {
+  background-image: url("https://img.icons8.com/emoji/48/000000/white-heart.png");
+  width: 48px;
+  height: 48px;
+}
+
 .fav-news {
+  cursor: pointer;
   position: absolute;
   top: 10px;
   right: 20px;

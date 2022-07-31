@@ -32,7 +32,6 @@ showNewsInCategories = () => {
            
   					</div>
             <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
-            <a href="#"><img src="https://img.icons8.com/emoji/48/000000/white-heart.png"/></a>
             
             </div>
   					<div class="news-date">
@@ -143,7 +142,7 @@ showArticleViewed = (data) => {
 };
 
 showFavNews = (data1) => {
-  let elemFavNews = $("#fav-news");
+  let elemFavNews = $("#fav-news1");
   let xhtml = "";
 
   $.each(data1, function (key, val) {
@@ -154,7 +153,7 @@ showFavNews = (data1) => {
        
         </div>
         </div>
-            <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
+            <div id="fav-news1" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
               <a href="#"><img src="https://img.icons8.com/emoji/48/000000/heart-suit.png"/></a>
             
             </div>
@@ -209,7 +208,9 @@ showNews1 = () => {
     </div>
   </div>
 </div>
-</div>`;
+</div>
+
+`;
       });
       elemSportNews.html(xhtml);
     }
@@ -221,7 +222,6 @@ showNews2 = () => {
   $.getJSON(
     "http://apiforlearning.zendvn.com/api/categories_news/2/articles?offset=0&limit=4&sort_by=id&sort_dir=desc",
     function (data) {
-      console.log(data);
       let xhtml = "";
 
       $.each(data, function (key, val) {
@@ -259,7 +259,6 @@ showNews3 = () => {
   $.getJSON(
     "http://apiforlearning.zendvn.com/api/categories_news/1/articles?offset=0&limit=4&sort_by=id&sort_dir=desc",
     function (data) {
-      console.log(data);
       let xhtml = "";
 
       $.each(data, function (key, val) {
@@ -297,7 +296,6 @@ showNews4 = () => {
   $.getJSON(
     "http://apiforlearning.zendvn.com/api/categories_news/6/articles?offset=0&limit=4&sort_by=id&sort_dir=desc",
     function (data) {
-      console.log(data, "hihi");
       let xhtml = "";
 
       $.each(data, function (key, val) {
@@ -327,7 +325,6 @@ showNews4 = () => {
 </div>`;
       });
       elemNews4.html(xhtml);
-      console.log(xhtml, "===");
     }
   );
 };

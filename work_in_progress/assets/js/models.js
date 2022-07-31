@@ -51,8 +51,14 @@ deleteFavs = (id) => {
   return favs;
 };
 
-addFavs = (id, title, thumb, link) => {
-  let taskNew = { id: id, title: title, thumb: thumb, link: link };
+addFavs = (id, title, thumb, link, imgBg) => {
+  let taskNew = {
+    id: id,
+    title: title,
+    thumb: thumb,
+    link: link,
+    imgBg: `https://img.icons8.com/emoji/48/000000/heart-suit.png`,
+  };
 
   let favs = listFavs();
   favs.push(taskNew);
