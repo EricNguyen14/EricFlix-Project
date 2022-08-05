@@ -51,13 +51,13 @@ deleteFavs = (id) => {
   return favs;
 };
 
-addFavs = (id, title, thumb, link, imgBg) => {
+addFavs = (id, title, thumb, link, heartColor) => {
   let taskNew = {
     id: id,
     title: title,
     thumb: thumb,
     link: link,
-    imgBg: `https://img.icons8.com/emoji/48/000000/heart-suit.png`,
+    heartColor: `red`,
   };
 
   let favs = listFavs();
@@ -67,4 +67,37 @@ addFavs = (id, title, thumb, link, imgBg) => {
   saveStorageFavs(favs);
 
   return favs;
+};
+
+loadStorageVideos = () => {
+  return JSON.parse(localStorage.getItem("VIDEOS_VIEWED"));
+};
+
+saveStorageVideos = (videos) => {
+  localStorage.setItem("VIDEOS_VIEWED", JSON.stringify(videos));
+};
+
+listVideos = () => {
+  let videos = loadStorageVideos();
+  if (videos === null) videos = []; //
+  return videos;
+};
+
+deleteVideo = (id) => {
+  let videos = listVideos();
+  videos = videos.filter((video) => video.id !== id);
+  saveStorageVideos(videos);
+  return videos;
+};
+
+addVideo = (id, title, iframe) => {
+  let taskNew = { id: id, title: title, iframe: iframe };
+
+  let videos = listVideos();
+  videos.push(taskNew);
+
+  // Lưu item vào storgare
+  saveStorageVideos(videos);
+
+  return videos;
 };

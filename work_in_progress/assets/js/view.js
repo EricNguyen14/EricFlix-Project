@@ -2,7 +2,6 @@ showCategoriesInMenu = () => {
   let elmAreaCategoryNews = $("ul#news");
   const API_PREFIX = "http://apiforlearning.zendvn.com/api/";
   $.getJSON(API_PREFIX + "categories_news", function (data) {
-    console.log(data, "hoho");
     let xhtml = "";
     $.each(data, function (key, val) {
       xhtml += `<li><a href="category.html?id=${val.id}">- ${val.name}</a></li>`;
@@ -31,8 +30,8 @@ showNewsInCategories = () => {
   					 <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
            
   					</div>
-            <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
-            
+            <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
+              &#x02665
             </div>
   					<div class="news-date">
 
@@ -182,11 +181,49 @@ showNews1 = () => {
   $.getJSON(
     "http://apiforlearning.zendvn.com/api/categories_news/3/articles?offset=0&limit=4&sort_by=id&sort_dir=desc",
     function (data) {
-      console.log(data);
       let xhtml = "";
 
       $.each(data, function (key, val) {
         xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
+      <div class="single-portfolio">
+      <div class="single-portfolio-img">
+      <img
+      src="${val.thumb}"
+      alt="portfolio"
+    />
+    <a
+      href="${val.link}" target=blank
+      class="popup-youtube"
+    >
+      <i class="icofont icofont-ui-play"></i>
+          </a>
+      </div>
+        <div class="portfolio-content">
+         <h2>${val.title}</h2>
+        <div class="review">
+      
+      <a href="${val.link}"> Đọc thêm</a>
+    </div>
+  </div>
+</div>
+</div>
+
+`;
+      });
+      elemSportNews.html(xhtml);
+    }
+  );
+};
+
+showNews1Index = () => {
+  let elemSportNews = $("#news-2");
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/categories_news/3/articles?offset=0&limit=6&sort_by=id&sort_dir=desc",
+    function (data) {
+      let xhtml = "";
+
+      $.each(data, function (key, val) {
+        xhtml += `<div class="col-lg-4 col-md-4 col-sm-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
       <img
@@ -325,6 +362,165 @@ showNews4 = () => {
 </div>`;
       });
       elemNews4.html(xhtml);
+    }
+  );
+};
+showMoviesCategories = () => {
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/playlists?offset=0&limit=7&sortBy=id&sort_dir=asc&type=film",
+    function (data) {
+      let xhtml = "";
+      $.each(data, function (key, val) {
+        xhtml += `<li><a href="movies.html?id=${val.id}">- ${val.title}</a></li>`;
+      });
+
+      $("#movies-category").html(xhtml);
+    }
+  );
+};
+showMovies = () => {
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/playlists/" +
+      urlID +
+      "/videos?offset=0&limit=21&sort_by=id&sort_dir=asc",
+    function (data) {
+      console.log(data, "data");
+      let xhtml = "";
+      $.each(data, function (key, val) {
+        console.log("alo alo", val.iframe);
+
+        let thumbnailObj = JSON.parse(val.thumbnail);
+
+        xhtml += `<div class="col-lg-4 col-md-4 col-sm-6 released">
+        <div class="single-portfolio">
+          <div class="single-portfolio-img">
+            <img
+            src="${thumbnailObj.high.url}"
+              alt="portfolio"
+            />
+            <a
+              id="abc"
+              href="movie-details.html"
+              class="popup-youtube"
+              onclick="playMovie('${val.id}')">
+              <i class="icofont icofont-ui-play"></i>
+            </a>
+          </div>
+          <div class="portfolio-content">
+            <h2>${val.title}</h2>
+           
+          </div>
+        </div>
+      </div>`;
+      });
+      $("#movies-videos").html(xhtml);
+    }
+  );
+};
+
+showSlideMovies = () => {
+  function randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/playlists/82/videos?offset=" +
+      randomInteger(0, 30) +
+      "&limit=1&sort_by=id&sort_dir=asc",
+    function (data) {
+      console.log(data, "lala");
+      let xhtml = "";
+      $.each(data, function (key, val) {
+        const data = val.iframe;
+
+        xhtml += `<div class="row hero-area-slide">
+        <div class="col-lg-12 col-md-5">
+          <div class="hero-area-content">
+            ${data}
+          </div>
+        </div>
+       
+          
+            
+            
+          </div>
+        </div>
+      </div>`;
+      });
+
+      $("#videos-slide").html(xhtml);
+    }
+  );
+};
+
+showActionMovie = () => {
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/playlists/80/videos?offset=0&limit=9&sort_by=id&sort_dir=asc",
+    function (data) {
+      let xhtml = "";
+      $.each(data, function (key, val) {
+        let thumbnailObj = JSON.parse(val.thumbnail);
+
+        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+  <div class="single-portfolio">
+    <div class="single-portfolio-img">
+      <img
+        src="${thumbnailObj.medium.url}"
+        alt="portfolio"
+      />
+      <a
+        
+        href="movie-details.html"
+        class="popup-youtube"
+        onclick="playMovie('${val.id}')">
+      
+        <i class="icofont icofont-ui-play"></i>
+      </a>
+    </div>
+    <div class="portfolio-content">
+      <h2 style="font-size:14px">${val.title}</h2>
+      
+    </div>
+  </div>
+</div>`;
+      });
+
+      $("#home-movie1").html(xhtml);
+    }
+  );
+};
+
+showActionMovie2 = () => {
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/playlists/80/videos?offset=17&limit=9&sort_by=id&sort_dir=asc",
+    function (data) {
+      console.log(data, "cc");
+      let xhtml = "";
+      $.each(data, function (key, val) {
+        let thumbnailObj = JSON.parse(val.thumbnail);
+
+        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+  <div class="single-portfolio">
+    <div class="single-portfolio-img">
+      <img
+        src="${thumbnailObj.medium.url}"
+        alt="portfolio"
+      />
+      <a
+        href="movie-details.html"
+        class="popup-youtube"
+        onclick="playMovie('${val.id}')">
+      
+        <i class="icofont icofont-ui-play"></i>
+      </a>
+    </div>
+    <div class="portfolio-content">
+      <h2 style="font-size:14px">${val.title}</h2>
+      
+    </div>
+  </div>
+</div>`;
+      });
+      $("#home-movie2").html(xhtml);
     }
   );
 };

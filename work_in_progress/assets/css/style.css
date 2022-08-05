@@ -145,9 +145,12 @@ textarea:focus {
   outline: none !important;
   box-shadow: none !important;
 }
-.section-title h1 i {
+.section-title a {
+  font-size: 15px;
+}
+.section-title a i {
   color: #fece50;
-  font-size: 40px;
+  font-size: 15px;
   margin-right: 5px;
 }
 .mt-100 {
@@ -426,7 +429,7 @@ option {
 ------------------------------------*/
 .hero-area {
   position: relative;
-  background-image: url("../img/hero-area.png");
+  background-image: url("/work_in_progress/assets/img/Netflix-Background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -434,18 +437,24 @@ option {
 }
 .hero-area-slide {
   background: #13151f;
-  margin: 320px 15px 50px;
-  padding-top: 52px;
+  margin: 220px 15px 200px;
+  padding-top: 22px;
+  transform: translateY(-85px);
   box-shadow: 0 0 20px #000000;
 }
 
 .hero-area-content > img {
+  height: 400px;
   position: relative;
   margin-top: -120px;
+}
+.hero-area-content iframe {
+  height: 450px;
 }
 .hero-area-slider {
   margin: auto;
   max-width: 950px;
+  height: 400px;
 }
 
 .author-review {
@@ -548,6 +557,7 @@ hr {
   border-top: 1px solid #ddd;
 }
 .portfolio-menu {
+  font-size: 20px;
   padding-top: 30px;
 }
 
@@ -581,7 +591,7 @@ hr {
 }
 .newest {
   margin-top: 30px;
-  border-bottom: solid 1px;
+
   display: inline-block;
 }
 .portfolio-content h2 {
@@ -596,6 +606,10 @@ hr {
 .single-portfolio-img {
   overflow: hidden;
   position: relative;
+}
+.single-portfolio-img img {
+  /* height: 340px;
+  width: 540px; */
 }
 .single-portfolio-img:hover .popup-youtube i {
   opacity: 1;
@@ -889,6 +903,9 @@ hr {
   background: url("../img/footer-bg.png") no-repeat bottom center / cover;
   position: relative;
   padding: 90px 0 30px;
+}
+#footer-index {
+  margin-top: 1000px;
 }
 .footer::before {
   position: absolute;
@@ -1599,9 +1616,12 @@ h3 {
   }
 }
 #fav-news {
-  background-image: url("https://img.icons8.com/emoji/48/000000/white-heart.png");
-  width: 48px;
-  height: 48px;
+  color: #fff;
+  font-size: 50px;
+}
+
+.heartActive {
+  color: red !important;
 }
 
 .fav-news {
@@ -1625,6 +1645,10 @@ h3 {
 .h2bt {
   border-bottom: solid 1px;
   display: inline-block;
+}
+/* movie background */
+#movie-zone {
+  background-image: url(/work_in_progress/assets/img/Netflix-Background.jpg);
 }
 /*--------------------------------------
 --------- Pre Loader Style END ---------

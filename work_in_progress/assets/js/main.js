@@ -199,6 +199,13 @@ $(document).ready(function () {
   showNews2();
   showNews3();
   showNews4();
+  showMoviesCategories();
+  showMovies();
+  playMovie();
+  showActionMovie();
+  showActionMovie2();
+  showSlideMovies();
+  showNews1Index();
 });
 // get id API
 $.urlParam = function (name) {
@@ -216,12 +223,5 @@ let data = listItems();
 showArticleViewed(data);
 let data1 = listFavs();
 showFavNews(data1);
-
-var currentdate = new Date();
-var datetime =
-  "Seen In: " +
-  currentdate.getDate() +
-  "/" +
-  (currentdate.getMonth() + 1) +
-  "/" +
-  currentdate.getFullYear();
+let data2 = listVideos();
+// showFavVideos(data2);

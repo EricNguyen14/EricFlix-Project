@@ -29,7 +29,9 @@ funcViewArticle = (id, title, thumb, link) => {
   items = addItem(id, title, thumb, link);
   showArticleViewed();
 };
-funcFavNews = (id, title, thumb, link, imgBg) => {
+funcFavNews = (id, title, thumb, link, heartColor) => {
+  $("#fav-news").css("color", heartColor);
+
   // let imgBgs = document.getElementById("fav-news");
   // console.log(imgBgs);
   const isExist = listFavs().some((el) => {
@@ -38,10 +40,12 @@ funcFavNews = (id, title, thumb, link, imgBg) => {
   if (isExist) {
     deleteFavs(id);
   } else {
-    addFavs(id, title, thumb, link, imgBg);
-    $("#fav-news").css({
-      "background-image":
-        'url("https://img.icons8.com/emoji/48/000000/heart-suit.png");',
-    });
+    addFavs(id, title, thumb, link, heartColor);
   }
+
+  showFavNews();
+};
+playMovie = (id, title, iframe) => {
+  let videos = [];
+  videos = addVideo(id, title, iframe);
 };
