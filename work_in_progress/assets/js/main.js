@@ -206,6 +206,13 @@ $(document).ready(function () {
   showActionMovie2();
   showSlideMovies();
   showNews1Index();
+  showLoveMovie();
+  showCartoonMovie();
+  showHorrorMovie();
+  showPsychoMovie();
+  showComedyMovie();
+  showActionMovie3();
+  showAmazingMovie();
 });
 // get id API
 $.urlParam = function (name) {
