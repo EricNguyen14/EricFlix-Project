@@ -45,7 +45,8 @@ funcFavNews = (id, title, thumb, link, heartColor) => {
 
   showFavNews();
 };
-playMovie = (id, title, iframe) => {
+playMovie = (val) => {
   let videos = [];
-  videos = addVideo(id, title, iframe);
+  videos = addVideo(val.id, val.title, val.iframe);
+  console.log(videos);
 };

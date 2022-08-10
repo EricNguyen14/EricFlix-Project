@@ -90,11 +90,11 @@ deleteVideo = (id) => {
   return videos;
 };
 
-addVideo = (id, title, iframe) => {
-  let taskNew = { id: id, title: title, iframe: iframe };
+addVideo = (val) => {
+  let taskVideos = { id: val.id, title: val.title, iframe: val.iframe };
 
   let videos = listVideos();
-  videos.push(taskNew);
+  videos.push(taskVideos);
 
   // Lưu item vào storgare
   saveStorageVideos(videos);

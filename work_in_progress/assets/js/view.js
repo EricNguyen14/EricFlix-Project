@@ -89,7 +89,7 @@ showCoinPrices = () => {
       val.price = val.price.toLocaleString();
       val.percent_change_24h = val.percent_change_24h.toFixed(2);
       let classPrice = val.percent_change_24h > 0 ? "green" : "red";
-      console.log(classPrice);
+
       xhtml += `
        
         <tr>    
@@ -392,6 +392,7 @@ showMovies = () => {
         xhtml += `<div class="col-lg-4 col-md-4 col-sm-6 released">
         <div class="single-portfolio">
           <div class="single-portfolio-img">
+          <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
             <img
             src="${thumbnailObj.high.url}"
               alt="portfolio"
@@ -400,7 +401,7 @@ showMovies = () => {
               id="abc"
               href="movie-details.html"
               class="popup-youtube"
-              onclick="playMovie('${val.id}')">
+              onclick="playMovie('${val}')">
               <i class="icofont icofont-ui-play"></i>
             </a>
           </div>
@@ -425,7 +426,6 @@ showSlideMovies = () => {
       randomInteger(0, 30) +
       "&limit=1&sort_by=id&sort_dir=asc",
     function (data) {
-      console.log(data, "lala");
       let xhtml = "";
       $.each(data, function (key, val) {
         const data = val.iframe;
@@ -469,7 +469,7 @@ showActionMovie = () => {
         
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val.id}')">
+        onclick="playMovie('${val}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -491,7 +491,6 @@ showActionMovie2 = () => {
   $.getJSON(
     "http://apiforlearning.zendvn.com/api/playlists/80/videos?offset=17&limit=9&sort_by=id&sort_dir=asc",
     function (data) {
-      console.log(data, "cc");
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
@@ -522,8 +521,8 @@ showActionMovie2 = () => {
     }
   );
 };
-playMovie = (val) => {
-  console.log(val);
+playMovie = (id) => {
+  console.log(id);
 };
 
 // movies category
@@ -546,7 +545,7 @@ showLoveMovie = () => {
         
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val.id}')">
+        onclick="playMovie('${val}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -582,7 +581,7 @@ showCartoonMovie = () => {
         
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val.id}')">
+        onclick="playMovie('${val}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -619,7 +618,7 @@ showHorrorMovie = () => {
         
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val.id}')">
+        onclick="playMovie('${val}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -656,7 +655,7 @@ showPsychoMovie = () => {
         
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val.id}')">
+        onclick="playMovie('${val}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -693,7 +692,7 @@ showComedyMovie = () => {
         
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val.id}')">
+        onclick="playMovie('${val}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -729,7 +728,7 @@ showActionMovie3 = () => {
         
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val.id}')">
+        onclick="playMovie('${val}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -765,7 +764,7 @@ showAmazingMovie = () => {
         
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val.id}')">
+        onclick="playMovie('${val}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
