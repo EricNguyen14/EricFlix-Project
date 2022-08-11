@@ -30,6 +30,7 @@ funcViewArticle = (id, title, thumb, link) => {
   showArticleViewed();
 };
 funcFavNews = (id, title, thumb, link, heartColor) => {
+  console.log("check");
   $("#fav-news").css("color", heartColor);
 
   // let imgBgs = document.getElementById("fav-news");
@@ -46,7 +47,11 @@ funcFavNews = (id, title, thumb, link, heartColor) => {
   showFavNews();
 };
 playMovie = (val) => {
+  console.log(val);
   let videos = [];
   videos = addVideo(val.id, val.title, val.iframe);
   console.log(videos);
+};
+playMovie = (id) => {
+  console.log(id);
 };

@@ -195,6 +195,8 @@ $(document).ready(function () {
   showNewsInCategories();
   showGoldPrices();
   showCoinPrices();
+  showNewsX();
+  showNews1Index();
   showNews1();
   showNews2();
   showNews3();
@@ -205,7 +207,6 @@ $(document).ready(function () {
   showActionMovie();
   showActionMovie2();
   showSlideMovies();
-  showNews1Index();
   showLoveMovie();
   showCartoonMovie();
   showHorrorMovie();

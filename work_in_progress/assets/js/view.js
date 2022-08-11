@@ -1,3 +1,4 @@
+//  show new start
 showCategoriesInMenu = () => {
   let elmAreaCategoryNews = $("ul#news");
   const API_PREFIX = "http://apiforlearning.zendvn.com/api/";
@@ -25,33 +26,25 @@ showNewsInCategories = () => {
         // let date = month + year;
         // console.log(date);
         xhtml += `<div class="col-lg-12">
-  				<div class="single-news" >
-         
-  					 <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
-           
-  					</div>
-            <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
-              &#x02665
+          <div class="single-news">
+          <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
+          <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
+          &#x02665 
+        </div>
+            <div class="news-date">
+            ${val.publish_date}
             </div>
-  					<div class="news-date">
-
-  						<h1>
-              
-              ${val.publish_date}
-              </h1>
-  					</div>
-  					<div class="news-content">
-            
-  						<h2>
+          </div>
+          <h2>
               <a href="${val.link}" target=blank; onClick="funcViewArticle('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
               ${val.title}
              </a>
               </h2>
-            
-  						<p>${val.description}</p>
-  					</div>
-  				
-  				</div>
+         
+          <p>
+          ${val.description}
+          </p>
+        </div>
   				</div>
 
   			`;
@@ -61,6 +54,7 @@ showNewsInCategories = () => {
     }
   );
 };
+
 showGoldPrices = () => {
   let elemGoldPrice = $("#gold-price");
   $.getJSON("http://apiforlearning.zendvn.com/api/get-gold", function (data) {
@@ -123,13 +117,13 @@ showArticleViewed = (data) => {
             <a href="#" >
              xóa</a>
             </div>
-            <div class="news-content">
-              <h2>${val.title}</h2>
+            <div>
+              <h4 ><a href="${val.link}" target=blank; >${val.title}</a></h4>
               <p>
                
               </p>
             </div>
-            <a href="${val.link}" target=blank;>Đọc tiếp</a>
+           
           </div>
           </div>
           
@@ -145,30 +139,25 @@ showFavNews = (data1) => {
   let xhtml = "";
 
   $.each(data1, function (key, val) {
-    xhtml += `<div class="col-lg-12">
-      <div class="single-news" >
-     
-         <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
+    xhtml += `
+      <div class="col-lg-12">     
+      <div class="single-news">
+      <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
+      <div id="fav-news1" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
+      <a href="#"><img src="https://img.icons8.com/emoji/48/000000/heart-suit.png"/></a>
+    </div>
        
-        </div>
-        </div>
-            <div id="fav-news1" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
-              <a href="#"><img src="https://img.icons8.com/emoji/48/000000/heart-suit.png"/></a>
-            
-            </div>
-        
-        <div class="news-content">
-        
-          <h2>
-          <a href="${val.link}" target=blank;  >
+      </div>
+      <h4>
+          <a href="${val.link}" target=blank; onClick="funcViewArticle('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
           ${val.title}
          </a>
-          </h2>
-        
-          <a  href=${val.link}> Đọc thêm</a>
-        </div>
-      
+          </h4>
+     
+     
+    </div>
       </div>
+      
       </div>
 
     `;
@@ -187,7 +176,7 @@ showNews1 = () => {
         xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
-      <img
+      <img  id="fix-img"
       src="${val.thumb}"
       alt="portfolio"
     />
@@ -199,10 +188,10 @@ showNews1 = () => {
           </a>
       </div>
         <div class="portfolio-content">
-         <h2>${val.title}</h2>
+         <h2>${val.title} <a href="${val.link}"></a></h2>
         <div class="review">
       
-      <a href="${val.link}"> Đọc thêm</a>
+     
     </div>
   </div>
 </div>
@@ -215,18 +204,17 @@ showNews1 = () => {
   );
 };
 
-showNews1Index = () => {
-  let elemSportNews = $("#news-2");
+showNewsX = () => {
   $.getJSON(
-    "http://apiforlearning.zendvn.com/api/categories_news/3/articles?offset=0&limit=6&sort_by=id&sort_dir=desc",
+    "http://apiforlearning.zendvn.com/api/categories_news/3/articles?offset=0&limit=4&sort_by=id&sort_dir=desc",
     function (data) {
       let xhtml = "";
 
       $.each(data, function (key, val) {
-        xhtml += `<div class="col-lg-4 col-md-4 col-sm-6">
+        xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
-      <img
+      <img id="fix-img"
       src="${val.thumb}"
       alt="portfolio"
     />
@@ -238,10 +226,48 @@ showNews1Index = () => {
           </a>
       </div>
         <div class="portfolio-content">
-         <h2>${val.title}</h2>
+         <h2>${val.title} <a href="${val.link}"></a></h2>
         <div class="review">
       
-      <a href="${val.link}"> Đọc thêm</a>
+     
+    </div>
+  </div>
+</div>
+</div>
+
+`;
+      });
+      $("#news-x").html(xhtml);
+    }
+  );
+};
+showNews1Index = () => {
+  let elemSportNews = $("#news-2");
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/categories_news/3/articles?offset=0&limit=6&sort_by=id&sort_dir=desc",
+    function (data) {
+      let xhtml = "";
+
+      $.each(data, function (key, val) {
+        xhtml += `<div class="col-lg-4 col-md-4 col-sm-6">
+      <div class="single-portfolio">
+      <div class="single-portfolio-img">
+      <img  id="fix-img"
+      src="${val.thumb}"
+      alt="portfolio"
+    />
+    <a
+      href="${val.link}" target=blank
+      class="popup-youtube"
+    >
+      <i class="icofont icofont-ui-play"></i>
+          </a>
+      </div>
+        <div class="portfolio-content">
+         <h2 style="font-size:14px;">${val.title}</h2>
+        <div class="review">
+      
+  
     </div>
   </div>
 </div>
@@ -255,7 +281,7 @@ showNews1Index = () => {
 };
 
 showNews2 = () => {
-  let elemNews2 = $("#news-2");
+  let elemNews2 = $("#news-3");
   $.getJSON(
     "http://apiforlearning.zendvn.com/api/categories_news/2/articles?offset=0&limit=4&sort_by=id&sort_dir=desc",
     function (data) {
@@ -265,7 +291,7 @@ showNews2 = () => {
         xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
-      <img
+      <img  id="fix-img"
       src="${val.thumb}"
       alt="portfolio"
     />
@@ -279,8 +305,7 @@ showNews2 = () => {
         <div class="portfolio-content">
          <h2>${val.title}</h2>
         <div class="review">
-      
-      <a href="${val.link}"> Đọc thêm</a>
+     
     </div>
   </div>
 </div>
@@ -302,7 +327,7 @@ showNews3 = () => {
         xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
-      <img
+      <img  id="fix-img"
       src="${val.thumb}"
       alt="portfolio"
     />
@@ -317,7 +342,7 @@ showNews3 = () => {
          <h2>${val.title}</h2>
         <div class="review">
       
-      <a href="${val.link}"> Đọc thêm</a>
+     
     </div>
   </div>
 </div>
@@ -340,7 +365,7 @@ showNews4 = () => {
         
       <div class="single-portfolio">
       <div class="single-portfolio-img">
-      <img
+      <img  id="fix-img"
       src="${val.thumb}"
       alt="portfolio"
     />
@@ -355,7 +380,7 @@ showNews4 = () => {
          <h2>${val.title}</h2>
         <div class="review">
       
-      <a href="${val.link}"> Đọc thêm</a>
+      
     </div>
   </div>
 </div>
@@ -365,6 +390,9 @@ showNews4 = () => {
     }
   );
 };
+//  show news end
+
+// show movie start
 showMoviesCategories = () => {
   $.getJSON(
     "http://apiforlearning.zendvn.com/api/playlists?offset=0&limit=7&sortBy=id&sort_dir=asc&type=film",
@@ -401,7 +429,7 @@ showMovies = () => {
               id="abc"
               href="movie-details.html"
               class="popup-youtube"
-              onclick="playMovie('${val}')">
+              onClick="playMovie('${val}')">
               <i class="icofont icofont-ui-play"></i>
             </a>
           </div>
@@ -461,16 +489,15 @@ showActionMovie = () => {
         xhtml += `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
     <div class="single-portfolio-img">
-      <img
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-      />
       <a
-        
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val}')">
-      
+        onClick="playMovie('${val}')">
+
+        <img
+        src="${thumbnailObj.medium.url}"
+        alt="portfolio"
+        />
         <i class="icofont icofont-ui-play"></i>
       </a>
     </div>
@@ -498,15 +525,15 @@ showActionMovie2 = () => {
         xhtml += `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
     <div class="single-portfolio-img">
-      <img
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-      />
       <a
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val.id}')">
-      
+        onClick="playMovie('${val.id}')">
+        
+        <img
+        src="${thumbnailObj.medium.url}"
+        alt="portfolio"
+      />
         <i class="icofont icofont-ui-play"></i>
       </a>
     </div>
@@ -520,9 +547,6 @@ showActionMovie2 = () => {
       $("#home-movie2").html(xhtml);
     }
   );
-};
-playMovie = (id) => {
-  console.log(id);
 };
 
 // movies category
@@ -545,7 +569,7 @@ showLoveMovie = () => {
         
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val}')">
+        onClick="playMovie('${val}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -581,7 +605,7 @@ showCartoonMovie = () => {
         
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val}')">
+        onClick="playMovie('${val}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -618,7 +642,7 @@ showHorrorMovie = () => {
         
         href="movie-details.html"
         class="popup-youtube"
-        onclick="playMovie('${val}')">
+        onClick="playMovie('${val.id}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -781,3 +805,4 @@ showAmazingMovie = () => {
     }
   );
 };
+// show movie end

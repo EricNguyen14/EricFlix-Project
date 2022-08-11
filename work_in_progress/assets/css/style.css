@@ -78,7 +78,7 @@ a:hover {
   color: #fff;
 }
 img {
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
 }
 iframe {
@@ -293,7 +293,7 @@ input::-webkit-input-placeholder {
 -------- HEADER AREA CSS START --------
 ---------------------------------------*/
 .header {
-  height: 140px;
+  height: 90px;
   background-color: #262832;
   padding: 18px 0;
   position: fixed;
@@ -301,7 +301,7 @@ input::-webkit-input-placeholder {
   left: 0;
   width: 100%;
   z-index: 99;
-  transform: translateY(-10px);
+  transform: translateY(-25px);
 }
 .header-area {
   display: grid;
@@ -315,7 +315,7 @@ input::-webkit-input-placeholder {
   grid-column: span 2;
   grid-row: span 2;
   padding-right: 15px;
-  transform: translateY(-15px);
+  transform: translateY(-32px);
 }
 .header-right {
   margin-top: 40px;
@@ -326,7 +326,9 @@ input::-webkit-input-placeholder {
 }
 
 .menu-area {
-  transform: translateY(-30px);
+  transform: translate3d(-320px, -81px, 0px);
+
+  display: inline;
   grid-column: span 10;
 }
 .mainmenu {
@@ -377,6 +379,8 @@ input::-webkit-input-placeholder {
   color: #eb315a;
 }
 .header-right form {
+  transform: translate3d(166px, 1px, 10px);
+
   display: flex;
   max-width: 380px;
   border: 1px solid #eee;
@@ -595,6 +599,8 @@ hr {
   display: inline-block;
 }
 .portfolio-content h2 {
+  display: inline-block;
+  width: 320px;
   font-size: 20px;
   margin-top: 15px;
 }
@@ -757,8 +763,7 @@ hr {
 .news-bg-1 {
   background: url("../img/news/news1.jpg") no-repeat center / cover;
   height: 350px;
-  filter: blur(1px);
-  -webkit-filter: blur(1px);
+
   margin-top: 20px;
 }
 
@@ -1504,7 +1509,7 @@ h3 {
 }
 .rwd-table {
   margin-top: 5px;
-  background: #34495e;
+  /* background: #34495e; */
   color: #fff;
   overflow: hidden;
 }
@@ -1631,7 +1636,7 @@ h3 {
   right: 20px;
 }
 #coin-price tr td {
-  padding-left: 50px;
+  padding-left: 20px;
 }
 .sell-red {
   color: red;
@@ -1655,4 +1660,9 @@ h3 {
 ---------------------------------------*/
 #movies-category {
   display: none;
+}
+#fix-img {
+  width: 312px;
+  height: 172px;
+  border: solid 4px white;
 }
