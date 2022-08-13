@@ -78,7 +78,7 @@ a:hover {
   color: #fff;
 }
 img {
-  max-width: 80%;
+  max-width: 110%;
   height: auto;
 }
 iframe {
@@ -769,8 +769,9 @@ hr {
 
 .news-date {
   position: absolute;
+  width: 100px;
   left: 20px;
-  top: 10px;
+  top: 0px;
   background: #f09819; /* Old browsers */
   background: -moz-linear-gradient(
     -45deg,
@@ -868,10 +869,18 @@ hr {
   margin: 50px auto 0;
 }
 .single-news a {
+  font-size: 22px;
   position: absolute;
   /* right: 40px; */
   bottom: 50px;
   display: contents;
+}
+.single-news h2 {
+  margin-bottom: 20px;
+}
+.single-news a:hover {
+  font-size: 30px;
+  color: red;
 }
 .news-slide-area {
   position: relative;
@@ -1664,5 +1673,19 @@ h3 {
 #fix-img {
   width: 312px;
   height: 172px;
-  border: solid 4px white;
+}
+
+.active-news {
+  color: red;
+}
+.sub-news li {
+  font-size: 18px;
+  border-bottom: solid 1px;
+  margin-bottom: 10px;
+}
+.sub-news li:hover {
+  font-size: 22px;
+  border-bottom: solid 1px;
+  margin-bottom: 10px;
+  color: red;
 }

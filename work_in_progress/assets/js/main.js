@@ -233,3 +233,56 @@ let data1 = listFavs();
 showFavNews(data1);
 let data2 = listVideos();
 // showFavVideos(data2);
+$(document).ready(function () {
+  switch (urlID) {
+    case "1":
+      $("#sub-news1").addClass("active-news");
+      $("#sub-name").html("Tin tức thế giới");
+      break;
+    case "2":
+      $("#sub-news2").addClass("active-news");
+      $("#sub-name").html("Tin tức thời sự ");
+      break;
+    case "3":
+      $("#sub-news3").addClass("active-news");
+      $("#sub-name").html("Tin tức kinh doanh ");
+      break;
+
+    case "4":
+      $("#sub-news4").addClass("active-news");
+      $("#sub-name").html("Tin tức giải trí ");
+      break;
+
+    case "5":
+      $("#sub-news5").addClass("active-news");
+      $("#sub-name").html("Tin tức thể thao ");
+      break;
+
+    case "6":
+      $("#sub-news6").addClass("active-news");
+      $("#sub-name").html("Tin tức pháp luật ");
+      break;
+
+    case "7":
+      $("#sub-news7").addClass("active-news");
+      $("#sub-name").html("Tin tức giáo dục ");
+      break;
+    case "8":
+      $("#sub-news8").addClass("active-news");
+      $("#sub-name").html("Tin tức sức khỏe ");
+      break;
+
+    case "9":
+      $("#sub-news9").addClass("active-news");
+      $("#sub-name").html("Tin tức đời sống ");
+      break;
+
+    case "10":
+      $("#sub-news10").addClass("active-news");
+      $("#sub-name").html("Tin tức du lịch ");
+      break;
+
+    default:
+    // code block
+  }
+});

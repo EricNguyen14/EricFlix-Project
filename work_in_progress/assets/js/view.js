@@ -244,12 +244,12 @@ showNewsX = () => {
 showNews1Index = () => {
   let elemSportNews = $("#news-2");
   $.getJSON(
-    "http://apiforlearning.zendvn.com/api/categories_news/3/articles?offset=0&limit=6&sort_by=id&sort_dir=desc",
+    "http://apiforlearning.zendvn.com/api/categories_news/3/articles?offset=0&limit=8&sort_by=id&sort_dir=desc",
     function (data) {
       let xhtml = "";
 
       $.each(data, function (key, val) {
-        xhtml += `<div class="col-lg-4 col-md-4 col-sm-6">
+        xhtml += `<div class="col-lg-3 col-md-4 col-sm-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
       <img  id="fix-img"
