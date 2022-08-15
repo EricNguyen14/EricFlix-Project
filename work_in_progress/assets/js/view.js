@@ -19,32 +19,26 @@ showNewsInCategories = () => {
       "/articles?offset=0&limit=10&sort_by=id&sort_dir=desc",
     function (data) {
       let xhtml = "";
-
+      console.log(data);
       $.each(data, function (key, val) {
-        // let year = val.publish_date.getFullYear();
-        // let month = val.publish_date.getMonth() + 1;
-        // let date = month + year;
-        // console.log(date);
-        xhtml += `<div class="col-lg-12">
+        let day = val.publish_date.split(" ")[0];
+        let newdate = day.split("-");
+        let date = newdate[2] + "-" + newdate[1] + "-" + newdate[0];
+        xhtml +=
+          `<div class="col-lg-12">
           <div class="single-news">
-          <div class="news-bg-1" style="background:url(${
-            val.thumb
-          }); background-size: cover;  ">
-          <div id="fav-news" class="fav-news" onClick="funcFavNews('${
-            val.id
-          }', '${val.title}', '${val.thumb}', '${val.link},', '${
-          val.heartColor
-        },')" >
+          <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
+          <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
           &#x02665 
         </div>
             <div class="news-date">
-            ${val.publish_date.split(" ")[0].split("-").reverse()}
+           ` +
+          date +
+          `
             </div>
           </div>
           <h2>
-              <a href="${val.link}" target=blank; onClick="funcViewArticle('${
-          val.id
-        }', '${val.title}', '${val.thumb}', '${val.link}')" >
+              <a href="${val.link}" target=blank; onClick="funcViewArticle('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
               ${val.title}
              </a>
               </h2>
@@ -500,7 +494,7 @@ showActionMovie = () => {
       <a
         href="movie-details.html"
         class="popup-youtube"
-        onclick=funcViewedVideos('${val.id}','${val.title}','${val.iframe}')
+        onclick=funcViewedVideos('${val.id}','${val.title}','${val.iframe}
 
         <img
         src="${thumbnailObj.medium.url}"
