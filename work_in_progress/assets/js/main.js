@@ -234,6 +234,7 @@ let data1 = listFavs();
 showFavNews(data1);
 let data2 = listVideos();
 showVideosViewed(data2);
+showVideoClick(data2);
 // showFavVideos(data2);
 $(document).ready(function () {
   var selectedVal = $("#select-type option:selected").val();

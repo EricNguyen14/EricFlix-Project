@@ -494,9 +494,10 @@ showActionMovie = () => {
       <a
         href="movie-details.html"
         class="popup-youtube"
-        onclick=funcViewedVideos('${val.id}','${val.title}','${val.iframe}
+        onclick="funcViewedVideos('${val.id}','${val.title}')">
 
         <img
+        id="video-img-id"
         src="${thumbnailObj.medium.url}"
         alt="portfolio"
         />
@@ -808,4 +809,22 @@ showAmazingMovie = () => {
   );
 };
 showVideosViewed = (data2) => {};
-// show movie end
+showVideoClick = (id) => {
+  console.log(id);
+
+  //   const id = data2.map((object) => {
+  //     return object.id;
+  //   });
+  //   $.getJSON(
+  //     "http://apiforlearning.zendvn.com/api/videos/" + id + "",
+  //     function (data) {
+  //       console.log(data);
+  //       let xhtml =
+  //         `<div class="row flexbox-center">
+  //       ` +
+  //         data +
+  //         `
+  //   </div>`;
+  //     }
+  // );
+};
