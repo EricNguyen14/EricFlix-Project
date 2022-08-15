@@ -293,3 +293,50 @@ $(document).ready(function () {
     // code block
   }
 });
+$(document).ready(function () {
+  // On button click, get value
+  // of input control Show alert
+  // message box
+  $("#getValueBtn").click(function () {
+    var inputString = $("#getUserValue").value();
+    var newInput = inputString.replace(" ", "%20");
+    console.log(newInput);
+    $.getJSON(
+      "http://apiforlearning.zendvn.com/api/articles/search?q=" +
+        newInput +
+        "&offset=0&limit=10&sort_by=id&sort_dir=desc",
+      function (data) {
+        console.log(data);
+        let xhtml = "";
+
+        $.each(data, function (key, val) {
+          xhtml += `<div class="col-lg-12">
+            <div class="single-news">
+            <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
+            <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
+            &#x02665
+          </div>
+              <div class="news-date">
+              ${val.publish_date}
+              </div>
+            </div>
+            <h2>
+                <a href="${val.link}" target=blank; onClick="funcViewArticle('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
+                ${val.title}
+               </a>
+                </h2>
+  
+            <p>
+            ${val.description}
+            </p>
+          </div>
+            </div>
+  
+          `;
+        });
+
+        $("#news-search-result").html(xhtml);
+      }
+    );
+  });
+});
