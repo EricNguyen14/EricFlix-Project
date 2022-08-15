@@ -702,6 +702,8 @@ hr {
 -------- news AREA CSS START -------
 ------------------------------------*/
 .single-news {
+  transform: translateX(-15px);
+
   position: relative;
   color: #fff;
 }
