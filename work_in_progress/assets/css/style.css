@@ -396,6 +396,7 @@ input::-webkit-input-placeholder {
 option {
   color: #000;
 }
+
 .header-right form select {
   background: url("../img/select-icon.png") no-repeat right center;
   color: #fff;
@@ -423,6 +424,9 @@ option {
   padding: 8px 0 0;
   margin-left: 15px;
   display: inline-block;
+}
+#getValueBtn {
+  margin-right: 20px;
 }
 /*--------------------------------------
 --------- HEADER AREA CSS END ---------

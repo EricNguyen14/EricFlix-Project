@@ -203,7 +203,7 @@ $(document).ready(function () {
   showNews4();
   showMoviesCategories();
   showMovies();
-  playMovie();
+
   showActionMovie();
   showActionMovie2();
   showSlideMovies();
@@ -213,6 +213,7 @@ $(document).ready(function () {
   showPsychoMovie();
   showComedyMovie();
   showActionMovie3();
+  // showSearchNews();
   showAmazingMovie();
 });
 // get id API
@@ -232,8 +233,14 @@ showArticleViewed(data);
 let data1 = listFavs();
 showFavNews(data1);
 let data2 = listVideos();
+showVideosViewed(data2);
 // showFavVideos(data2);
 $(document).ready(function () {
+  var selectedVal = $("#select-type option:selected").val();
+  console.log(selectedVal, "hiihi");
+  if (selectedVal == "News") {
+    $("#getValueBtn").attr("href", "news-search.html");
+  }
   switch (urlID) {
     case "1":
       $("#sub-news1").addClass("active-news");

@@ -30,6 +30,37 @@ addItem = (id, title, thumb, link) => {
 
   return items;
 };
+loadStorageVideos = () => {
+  return JSON.parse(localStorage.getItem("VIDEOS_VIEWED"));
+};
+
+saveStorageVideos = (videos) => {
+  localStorage.setItem("VIDEOS_VIEWED", JSON.stringify(videos));
+};
+
+listVideos = () => {
+  let videos = loadStorageVideos();
+  if (videos === null) videos = []; //
+  return videos;
+};
+
+deleteVideos = (id) => {
+  let videos = listVideos();
+  videos = videos.filter((video) => video.id !== id);
+  saveStorageVideos(videos);
+  return videos;
+};
+
+addVideo = (id, title, iframe) => {
+  let taskVideo = { id: id, title: title, iframe: iframe };
+
+  let videos = listVideos();
+  videos.push(taskVideo);
+
+  saveStorageVideos(videos);
+
+  return videos;
+};
 
 //  favnews
 loadStorageFavs = () => {
@@ -67,37 +98,4 @@ addFavs = (id, title, thumb, link, heartColor) => {
   saveStorageFavs(favs);
 
   return favs;
-};
-
-loadStorageVideos = () => {
-  return JSON.parse(localStorage.getItem("VIDEOS_VIEWED"));
-};
-
-saveStorageVideos = (videos) => {
-  localStorage.setItem("VIDEOS_VIEWED", JSON.stringify(videos));
-};
-
-listVideos = () => {
-  let videos = loadStorageVideos();
-  if (videos === null) videos = []; //
-  return videos;
-};
-
-deleteVideo = (id) => {
-  let videos = listVideos();
-  videos = videos.filter((video) => video.id !== id);
-  saveStorageVideos(videos);
-  return videos;
-};
-
-addVideo = (val) => {
-  let taskVideos = { id: val.id, title: val.title, iframe: val.iframe };
-
-  let videos = listVideos();
-  videos.push(taskVideos);
-
-  // Lưu item vào storgare
-  saveStorageVideos(videos);
-
-  return videos;
 };

@@ -27,16 +27,24 @@ showNewsInCategories = () => {
         // console.log(date);
         xhtml += `<div class="col-lg-12">
           <div class="single-news">
-          <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
-          <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
+          <div class="news-bg-1" style="background:url(${
+            val.thumb
+          }); background-size: cover;  ">
+          <div id="fav-news" class="fav-news" onClick="funcFavNews('${
+            val.id
+          }', '${val.title}', '${val.thumb}', '${val.link},', '${
+          val.heartColor
+        },')" >
           &#x02665 
         </div>
             <div class="news-date">
-            ${val.publish_date}
+            ${val.publish_date.split(" ")[0].split("-").reverse()}
             </div>
           </div>
           <h2>
-              <a href="${val.link}" target=blank; onClick="funcViewArticle('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
+              <a href="${val.link}" target=blank; onClick="funcViewArticle('${
+          val.id
+        }', '${val.title}', '${val.thumb}', '${val.link}')" >
               ${val.title}
              </a>
               </h2>
@@ -492,13 +500,13 @@ showActionMovie = () => {
       <a
         href="movie-details.html"
         class="popup-youtube"
-        onClick="playMovie('${val}')">
+        onclick=funcViewedVideos('${val.id}','${val.title}','${val.iframe}')
 
         <img
         src="${thumbnailObj.medium.url}"
         alt="portfolio"
         />
-        <i class="icofont icofont-ui-play"></i>
+        <i  class="icofont icofont-ui-play"></i>
       </a>
     </div>
     <div class="portfolio-content">
@@ -805,4 +813,48 @@ showAmazingMovie = () => {
     }
   );
 };
+showVideosViewed = (data2) => {};
 // show movie end
+//  show search result
+// showSearchNews = () => {
+//   $.getJSON(
+//     "http://apiforlearning.zendvn.com/api/articles/search?q=" +
+//       inputString +
+//       "&offset=0&limit=10&sort_by=id&sort_dir=desc",
+//     function (data) {
+//       let xhtml = "";
+
+//       $.each(data, function (key, val) {
+//         // let year = val.publish_date.getFullYear();
+//         // let month = val.publish_date.getMonth() + 1;
+//         // let date = month + year;
+//         // console.log(date);
+//         xhtml += `<div class="col-lg-12">
+//           <div class="single-news">
+//           <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
+//           <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
+//           &#x02665
+//         </div>
+//             <div class="news-date">
+//             ${val.publish_date}
+//             </div>
+//           </div>
+//           <h2>
+//               <a href="${val.link}" target=blank; onClick="funcViewArticle('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')" >
+//               ${val.title}
+//              </a>
+//               </h2>
+
+//           <p>
+//           ${val.description}
+//           </p>
+//         </div>
+//   				</div>
+
+//   			`;
+//       });
+
+//       $("#news-search-result").html(xhtml);
+//     }
+//   );
+// };
