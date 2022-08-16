@@ -178,15 +178,16 @@ showNews1 = () => {
         xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
-      <img  id="fix-img"
-      src="${val.thumb}"
-      alt="portfolio"
-    />
+      
     <a
       href="${val.link}" target=blank
       class="popup-youtube"
     >
-      <i class="icofont icofont-ui-play"></i>
+    <img  id="fix-img"
+    src="${val.thumb}"
+    alt="portfolio"
+  />
+ 
           </a>
       </div>
         <div class="portfolio-content">
@@ -216,15 +217,16 @@ showNewsX = () => {
         xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
-      <img id="fix-img"
-      src="${val.thumb}"
-      alt="portfolio"
-    />
+      
     <a
       href="${val.link}" target=blank
       class="popup-youtube"
     >
-      <i class="icofont icofont-ui-play"></i>
+    <img id="fix-img"
+      src="${val.thumb}"
+      alt="portfolio"
+    />
+   
           </a>
       </div>
         <div class="portfolio-content">
@@ -254,15 +256,15 @@ showNews1Index = () => {
         xhtml += `<div class="col-lg-3 col-md-4 col-sm-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
-      <img  id="fix-img"
-      src="${val.thumb}"
-      alt="portfolio"
-    />
+      
     <a
       href="${val.link}" target=blank
       class="popup-youtube"
     >
-      <i class="icofont icofont-ui-play"></i>
+    <img  id="fix-img"
+      src="${val.thumb}"
+      alt="portfolio"
+    />
           </a>
       </div>
         <div class="portfolio-content">
@@ -293,15 +295,15 @@ showNews2 = () => {
         xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
-      <img  id="fix-img"
-      src="${val.thumb}"
-      alt="portfolio"
-    />
+     
     <a
       href="${val.link}" target=blank
       class="popup-youtube"
     >
-      <i class="icofont icofont-ui-play"></i>
+    <img  id="fix-img"
+    src="${val.thumb}"
+    alt="portfolio"
+  />
           </a>
       </div>
         <div class="portfolio-content">
@@ -329,15 +331,16 @@ showNews3 = () => {
         xhtml += `<div class="col-lg-6 col-md-4 col-sm-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
-      <img  id="fix-img"
-      src="${val.thumb}"
-      alt="portfolio"
-    />
+      
     <a
       href="${val.link}" target=blank
       class="popup-youtube"
     >
-      <i class="icofont icofont-ui-play"></i>
+    <img  id="fix-img"
+      src="${val.thumb}"
+      alt="portfolio"
+    />
+      
           </a>
       </div>
         <div class="portfolio-content">
@@ -367,15 +370,16 @@ showNews4 = () => {
         
       <div class="single-portfolio">
       <div class="single-portfolio-img">
-      <img  id="fix-img"
-      src="${val.thumb}"
-      alt="portfolio"
-    />
+     
     <a
       href="${val.link}" target=blank
       class="popup-youtube"
     >
-      <i class="icofont icofont-ui-play"></i>
+    <img  id="fix-img"
+      src="${val.thumb}"
+      alt="portfolio"
+    />
+      
           </a>
       </div>
         <div class="portfolio-content">

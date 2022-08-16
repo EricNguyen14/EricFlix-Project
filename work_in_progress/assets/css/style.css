@@ -603,10 +603,19 @@ hr {
   display: inline-block;
 }
 .portfolio-content h2 {
+  cursor: pointer;
   display: inline-block;
   width: 270px;
   font-size: 20px;
   margin-top: 15px;
+}
+
+.portfolio-content h2:hover {
+  display: inline-block;
+  width: 270px;
+  font-size: 20px m !important;
+  margin-top: 15px;
+  color: red;
 }
 
 .single-portfolio {
@@ -975,11 +984,12 @@ hr {
 ---- Movie details PAGE CSS START ----
 ------------------------------------*/
 .breadcrumb-area {
+  height: 200px;
   position: relative;
-  background-image: url("/work_in_progress/assets/img/newsbackground.jpg");
+  background-image: url("/work_in_progress/assets/img/team-bg.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  /* background-size: cover; */
   padding: 280px 0 200px;
 }
 .breadcrumb-area-content {
@@ -1521,6 +1531,7 @@ h3 {
   margin-top: 30px;
   transform: translateX(10%);
   font-size: 30px;
+  margin-bottom: 20px;
 }
 .rwd-table {
   margin-top: 5px;
@@ -1682,11 +1693,13 @@ h3 {
 }
 
 .active-news {
+  border-bottom: 1px solid red;
   color: red;
 }
 .sub-news li {
+  display: block;
   font-size: 18px;
-  border-bottom: solid 1px;
+  /* border-bottom: solid 1px; */
   margin-bottom: 10px;
 }
 .sub-news li:hover {
@@ -1694,4 +1707,5 @@ h3 {
   border-bottom: solid 1px;
   margin-bottom: 10px;
   color: red;
+  border-bottom: solid 1px;
 }
