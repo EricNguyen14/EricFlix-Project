@@ -299,14 +299,13 @@ $(document).ready(function () {
   // of input control Show alert
   // message box
   $("#getValueBtn").click(function () {
-    var inputString = $("#getUserValue").value();
+    var inputString = $("#getUserValue").val();
     var newInput = inputString.replace(" ", "%20");
     $.getJSON(
       "http://apiforlearning.zendvn.com/api/articles/search?q=" +
         newInput +
         "&offset=0&limit=10&sort_by=id&sort_dir=desc",
       function (data) {
-        console.log(data, "hihihaha");
         let xhtml = "";
 
         $.each(data, function (key, val) {
