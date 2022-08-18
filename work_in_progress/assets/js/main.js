@@ -237,6 +237,9 @@ showVideosViewed(data2);
 showVideoClick(data2);
 // showFavVideos(data2);
 $(document).ready(function () {
+  $("#reload").click(function () {
+    location.reload();
+  });
   var selectedVal = $("#select-type option:selected").val();
   console.log(selectedVal, "hiihi");
   if (selectedVal == "News") {

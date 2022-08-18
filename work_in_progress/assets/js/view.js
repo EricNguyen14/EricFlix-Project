@@ -121,20 +121,16 @@ showArticleViewed = (data) => {
             </div>
             <div>
               <h4 ><a href="${val.link}" target=blank; >${val.title}</a></h4>
-              <p>
-               
-              </p>
             </div>
            
           </div>
           </div>
-          
+            
       </div>
     
       `;
+    $("#viewed-news").html(xhtml);
   });
-  console.log(xhtml);
-  $("#viewed-news").html(xhtml);
 };
 
 showFavNews = (data1) => {
