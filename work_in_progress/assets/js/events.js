@@ -6,24 +6,6 @@ funcDeleteTask = (id) => {
   }
 };
 
-funcSubmitForm = () => {
-  let valueName = elemInputName.value;
-  let valueLevel = elemInputLevel.value;
-  let valueID = elemInputID.value;
-  let items = [];
-
-  if (valueID == "") {
-    // add
-    items = addItem(valueName, valueLevel);
-  } else {
-    // edit
-    items = editItem(valueID, valueName, valueLevel);
-  }
-
-  // Load lại danh sách
-  showItems(items);
-};
-
 funcViewArticle = (id, title, thumb, link) => {
   let items = [];
   items = addItem(id, title, thumb, link);

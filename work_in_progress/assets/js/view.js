@@ -105,7 +105,7 @@ showCoinPrices = () => {
   });
 };
 showArticleViewed = (data) => {
-  let elemViewedNews = $("#viewed-news");
+  // let elemViewedNews = $("#viewed-news");
   let xhtml = "";
 
   $.each(data, function (key, val) {
@@ -133,7 +133,8 @@ showArticleViewed = (data) => {
     
       `;
   });
-  elemViewedNews.html(xhtml);
+  console.log(xhtml);
+  $("#viewed-news").html(xhtml);
 };
 
 showFavNews = (data1) => {

@@ -27,7 +27,6 @@ addItem = (id, title, thumb, link) => {
 
   // Lưu item vào storgare
   saveStorage(items);
-
   return items;
 };
 loadStorageVideos = () => {
