@@ -27,8 +27,10 @@ showNewsInCategories = () => {
         xhtml +=
           `<div class="col-lg-12">
           <div class="single-news">
-          <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
-          <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
+          <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  
+             <input type="hidden"  id="input-hidden" name="${val.title}" value="${val.id}">
+
+          <div id="${val.id}" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
           &#x02665
         </div>
             <div class="news-date">
@@ -458,12 +460,13 @@ showSlideMovies = () => {
     function (data) {
       let xhtml = "";
       $.each(data, function (key, val) {
-        const data = val.iframe;
+        const data1 = val.iframe;
+        console.log(data, "hihi");
 
         xhtml += `<div class="row hero-area-slide">
         <div class="col-lg-12 col-md-5">
           <div class="hero-area-content">
-            ${data}
+            ${data1}
           </div>
         </div>
        
@@ -493,7 +496,7 @@ showActionMovie = () => {
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
     <div class="single-portfolio-img">
       <a
-        href="movie-details.html?id=${val.id}"
+        href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
         onclick="funcViewedVideos('${val.id}','${val.title}')">
 
@@ -531,7 +534,7 @@ showActionMovie2 = () => {
     <div class="single-portfolio-img">
     <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
       <a
-        href="movie-details.html?id=${val.id}"
+      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
         onclick="funcViewedVideos('${val.id}','${val.title}')">
         
@@ -573,7 +576,7 @@ showLoveMovie = () => {
       />
       <a
         
-        href="movie-details.html?id=${val.id}"
+      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
         onclick="funcViewedVideos('${val.id}','${val.title}')">
       
@@ -610,7 +613,7 @@ showCartoonMovie = () => {
       />
       <a
         
-        href="movie-details.html?id=${val.id}"
+      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
         onclick="funcViewedVideos('${val.id}','${val.title}')">
       
@@ -648,7 +651,7 @@ showHorrorMovie = () => {
       />
       <a
         
-        href="movie-details.html?id=${val.id}"
+      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
         onclick="funcViewedVideos('${val.id}','${val.title}')">
       
@@ -686,7 +689,7 @@ showPsychoMovie = () => {
       />
       <a
         
-        href="movie-details.html?id=${val.id}"
+      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
         onclick="funcViewedVideos('${val.id}','${val.title}')">
       
@@ -724,7 +727,7 @@ showComedyMovie = () => {
       />
       <a
         
-        href="movie-details.html?id=${val.id}"
+      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
         onclick="funcViewedVideos('${val.id}','${val.title}')">
       
@@ -761,7 +764,7 @@ showActionMovie3 = () => {
       />
       <a
         
-        href="movie-details.html?id=${val.id}"
+      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
         onclick="funcViewedVideos('${val.id}','${val.title}')">
       
@@ -780,9 +783,49 @@ showActionMovie3 = () => {
     }
   );
 };
-showAmazingMovie = () => {
+showActionMovie4 = () => {
   $.getJSON(
     "http://apiforlearning.zendvn.com/api/playlists/80/videos?offset=0&limit=6&sort_by=id&sort_dir=asc",
+    function (data) {
+      let xhtml = "";
+      $.each(data, function (key, val) {
+        let thumbnailObj = JSON.parse(val.thumbnail);
+
+        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+  <div class="single-portfolio">
+  <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
+    <div class="single-portfolio-img">
+      <img
+        src="${thumbnailObj.medium.url}"
+        alt="portfolio"
+      />
+      <a
+        
+      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+        class="popup-youtube"
+        onclick="funcViewedVideos('${val.id}','${val.title}')">
+      
+        <i class="icofont icofont-ui-play"></i>
+      </a>
+    </div>
+    <div class="portfolio-content">
+      <h2 style="font-size:14px">${val.title}</h2>
+      
+    </div>
+  </div>
+</div>`;
+      });
+
+      $("#home-movie10").html(xhtml);
+    }
+  );
+};
+showAmazingMovie = () => {
+  let urlPlaylistId = $.urlParam("playlist-id");
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/playlists/" +
+      urlPlaylistId +
+      "/videos?offset=0&limit=21&sort_by=id&sort_dir=asc",
     function (data) {
       let xhtml = "";
       $.each(data, function (key, val) {
@@ -813,7 +856,7 @@ showAmazingMovie = () => {
 </div>`;
       });
 
-      $("#home-movie10").html(xhtml);
+      $("#home-movie11").html(xhtml);
     }
   );
 };
@@ -824,35 +867,27 @@ playVideos = () => {
   $.getJSON(
     "http://apiforlearning.zendvn.com/api/videos/" + urlID + "",
     function (data) {
-      console.log(data, "1");
-
-      let xhtml = "";
-      $.each(data, function (key, val) {
-        console.log(data, "2");
-
-        let data1 = val.iframe;
-        xhtml +=
-          `
-        <div class="row flexbox-center">
+      console.log(data.iframe, "1hihiihihihi");
+      let data1 = data.iframe;
+      var xhtml =
+        `
+        <div class="movie-detail-ifram">
         ` +
-          data1 +
-          `
+        data1 +
+        `
       </div>
-      <a href="#" class="theme-btn">
+      <a href="#" class="theme-btn" onClick="favsVideo()">
         <img src="/work_in_progress/assets/icoin/icons8-love-26.png" /> Yêu
         thích</a
       >
   			`;
-      });
-
-      $("#play-movies").html(xhtml);
+      console.log(xhtml, "html");
+      $("#play-movie").html(xhtml);
     }
   );
 };
 showVideosViewed = (data2) => {};
 showVideoClick = (id) => {
-  console.log(id);
-
   // let seenId = $(".input-hidden").val();
   if (id) {
     $("#video-img-id").css("opacity", "0.5");

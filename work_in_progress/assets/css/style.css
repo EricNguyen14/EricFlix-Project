@@ -85,6 +85,9 @@ iframe {
   width: 100%;
   border: none;
 }
+.movie-detail-ifram iframe {
+  height: 600px !important;
+}
 a,
 a:hover,
 a:focus,
@@ -1647,7 +1650,7 @@ h3 {
     bottom: 100%;
   }
 }
-#fav-news {
+.fav-news {
   color: #fff;
   font-size: 50px;
 }

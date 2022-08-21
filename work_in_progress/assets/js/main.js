@@ -213,6 +213,7 @@ $(document).ready(function () {
   showPsychoMovie();
   showComedyMovie();
   showActionMovie3();
+  showActionMovie4();
   playVideos();
   // showSearchNews();
   showAmazingMovie();
@@ -229,7 +230,7 @@ $.urlParam = function (name) {
 };
 
 let urlID = $.urlParam("id");
-
+let urlPlaylistId = $.urlParam("playlist-id");
 let data = listItems();
 showArticleViewed(data);
 let data1 = listFavs();
@@ -294,6 +295,61 @@ $(document).ready(function () {
       $("#sub-news10").addClass("active-news");
       $("#sub-name").html("Tin tức du lịch ");
       break;
+    case "79":
+      $("#sub-video-name").html("Phim hành động");
+      break;
+    case "80":
+      $("#sub-video-name").html("Phim viễn tưởng");
+      break;
+    case "81":
+      $("#sub-video-name").html("Phim tâm lý");
+      break;
+
+    case "82":
+      $("#sub-video-name").html("Phim hoạt hình");
+      break;
+
+    case "83":
+      $("#sub-video-name").html("Phim hài");
+      break;
+
+    case "84":
+      $("#sub-video-name").html("Phim tình cảm");
+      break;
+
+    case "85":
+      $("#sub-video-name").html("Phim kinh dị");
+      break;
+
+    default:
+    // code block
+  }
+  switch (urlPlaylistId) {
+    case "79":
+      $("#name-film").html("Phim hành động");
+      break;
+    case "80":
+      $("#name-film").html("Phim viễn tưởng");
+      break;
+    case "81":
+      $("#name-film").html("Phim tâm lý");
+      break;
+
+    case "82":
+      $("#name-film").html("Phim hoạt hình");
+      break;
+
+    case "83":
+      $("#name-film").html("Phim hài");
+      break;
+
+    case "84":
+      $("#name-film").html("Phim tình cảm");
+      break;
+
+    case "85":
+      $("#name-film").html("Phim kinh dị");
+      break;
 
     default:
     // code block
@@ -318,7 +374,6 @@ $(document).ready(function () {
     return false;
   };
   var urlQ = getUrlParameter("q");
-  console.log(urlQ, "param");
   $("#getValueBtn").click(function () {
     var newInput = $("#getUserValue").val().replace(" ", "%20");
     console.log(newInput, "hihihihi");
@@ -338,9 +393,6 @@ $(document).ready(function () {
       urlQ +
       "&offset=0&limit=10&sort_by=id&sort_dir=desc",
     function (data) {
-      console.log(urlQ, "inside");
-
-      console.log(data, "api");
       let xhtml = "";
       if (data.length === 0) {
         xhtml += `<div class="col-lg-12">
@@ -348,7 +400,6 @@ $(document).ready(function () {
         </div>
         `;
         $("#news-search-result").html(xhtml);
-        console.log(xhtml, "null");
       } else {
         $.each(data, function (key, val) {
           xhtml += `<div class="col-lg-12">

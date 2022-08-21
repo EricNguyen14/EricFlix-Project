@@ -12,8 +12,7 @@ funcViewArticle = (id, title, thumb, link) => {
   showArticleViewed();
 };
 funcFavNews = (id, title, thumb, link, heartColor) => {
-  $("#fav-news").css("color", heartColor);
-
+  $("#" + id + "").addclass(".heartActive");
   // let imgBgs = document.getElementById("fav-news");
   // console.log(imgBgs);
   const isExist = listFavs().some((el) => {
