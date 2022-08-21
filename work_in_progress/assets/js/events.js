@@ -26,11 +26,22 @@ funcFavNews = (id, title, thumb, link, heartColor) => {
 
   showFavNews();
 };
+favsVideo = (id, title, thumb) => {
+  const isExist = listFavsVideos().some((el) => {
+    return el?.id === id;
+  });
+  if (isExist) {
+    deleteFavsVideo(id);
+  } else {
+    addFavsVideo(id, title, thumb);
+  }
+
+  showFavVideos();
+};
 funcViewedVideos = (id, title, iframe) => {
-  console.log("id");
   let videos = [];
   videos = addVideo(id, title, iframe);
-  console.log(videos);
+
   showVideosViewed();
   showVideoClick(id);
 };

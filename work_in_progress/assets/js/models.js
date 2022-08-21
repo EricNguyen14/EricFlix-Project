@@ -98,3 +98,39 @@ addFavs = (id, title, thumb, link, heartColor) => {
 
   return favs;
 };
+
+//  favsvideo
+loadStorageFavsVideos = () => {
+  return JSON.parse(localStorage.getItem("FAV_VIDEOS"));
+};
+saveStorageFavsVideos = (films) => {
+  localStorage.setItem("FAV_VIDEOS", JSON.stringify(films));
+};
+listFavsVideos = () => {
+  let films = loadStorageFavsVideos();
+  if (films === null) films = []; //
+  return films;
+};
+
+deleteFavsVideos = (id) => {
+  let films = listFavsVideos();
+  films = films.filter((film) => film.id !== id);
+  saveStorageFavsVideos(films);
+  return films;
+};
+
+addFavsVideos = (id, title, thumb) => {
+  let taskFilm = {
+    id: id,
+    title: title,
+    thumb: thumb,
+  };
+
+  let films = listFavsVideos();
+  films.push(taskFilm);
+
+  // Lưu item vào storgare
+  saveStorageFavsVideos(films);
+
+  return films;
+};

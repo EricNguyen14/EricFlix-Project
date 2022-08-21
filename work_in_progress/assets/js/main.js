@@ -396,7 +396,7 @@ $(document).ready(function () {
       let xhtml = "";
       if (data.length === 0) {
         xhtml += `<div class="col-lg-12">
-          <h2 style="margin-top:24px"> Không có kết quả tìm kiếm</h2>
+          <h2 style="margin-top:24px"> Không có kết quả tìm kiếm, vui lòng nhập từ khóa khác</h2>
         </div>
         `;
         $("#news-search-result").html(xhtml);

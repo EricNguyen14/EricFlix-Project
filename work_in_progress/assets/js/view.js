@@ -867,7 +867,8 @@ playVideos = () => {
   $.getJSON(
     "http://apiforlearning.zendvn.com/api/videos/" + urlID + "",
     function (data) {
-      console.log(data.iframe, "1hihiihihihi");
+      let thumbnailObj = JSON.parse(data.thumbnail);
+
       let data1 = data.iframe;
       var xhtml =
         `
@@ -876,7 +877,7 @@ playVideos = () => {
         data1 +
         `
       </div>
-      <a href="#" class="theme-btn" onClick="favsVideo()">
+      <a href="#" class="theme-btn" onClick="favsVideo('${data.id}','${data.title}','${thumbnailObj.high.url}')">
         <img src="/work_in_progress/assets/icoin/icons8-love-26.png" /> Yêu
         thích</a
       >
