@@ -213,6 +213,7 @@ $(document).ready(function () {
   showPsychoMovie();
   showComedyMovie();
   showActionMovie3();
+  playVideos();
   // showSearchNews();
   showAmazingMovie();
 });
@@ -228,6 +229,7 @@ $.urlParam = function (name) {
 };
 
 let urlID = $.urlParam("id");
+
 let data = listItems();
 showArticleViewed(data);
 let data1 = listFavs();
@@ -240,11 +242,11 @@ $(document).ready(function () {
   $("#reload").click(function () {
     location.reload();
   });
-  var selectedVal = $("#select-type option:selected").val();
-  console.log(selectedVal, "hiihi");
-  if (selectedVal == "News") {
-    $("#getValueBtn").attr("href", "news-search.html");
-  }
+  // var selectedVal = $("#select-type option:selected").val();
+  // console.log(selectedVal, "hiihi");
+  // if (selectedVal == "News") {
+  //   $("#getValueBtn").attr("href", "news-search.html");
+  // }
   switch (urlID) {
     case "1":
       $("#sub-news1").addClass("active-news");
@@ -298,19 +300,56 @@ $(document).ready(function () {
   }
 });
 $(document).ready(function () {
-  // On button click, get value
-  // of input control Show alert
-  // message box
-  $("#getValueBtn").click(function () {
-    var inputString = $("#getUserValue").val();
-    var newInput = inputString.replace(" ", "%20");
-    $.getJSON(
-      "http://apiforlearning.zendvn.com/api/articles/search?q=" +
-        newInput +
-        "&offset=0&limit=10&sort_by=id&sort_dir=desc",
-      function (data) {
-        let xhtml = "";
+  var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+      sURLVariables = sPageURL.split("&"),
+      sParameterName,
+      i;
 
+    for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split("=");
+
+      if (sParameterName[0] === sParam) {
+        return sParameterName[1] === undefined
+          ? true
+          : decodeURIComponent(sParameterName[1]);
+      }
+    }
+    return false;
+  };
+  var urlQ = getUrlParameter("q");
+  console.log(urlQ, "param");
+  $("#getValueBtn").click(function () {
+    var newInput = $("#getUserValue").val().replace(" ", "%20");
+    console.log(newInput, "hihihihi");
+    let xhtml = "";
+    if (newInput === "") {
+      alert(" Hãy nhập từ khóa tìm kiếm");
+    } else {
+      $("#getValueBtn").attr("href", "news-search.html?q=" + newInput + "");
+      xhtml = `
+          <i class="icofont icofont-search"></i>
+        `;
+    }
+    $("#getValueBtn").html(xhtml);
+  });
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/articles/search?q=" +
+      urlQ +
+      "&offset=0&limit=10&sort_by=id&sort_dir=desc",
+    function (data) {
+      console.log(urlQ, "inside");
+
+      console.log(data, "api");
+      let xhtml = "";
+      if (data.length === 0) {
+        xhtml += `<div class="col-lg-12">
+          <h2 style="margin-top:24px"> Không có kết quả tìm kiếm</h2>
+        </div>
+        `;
+        $("#news-search-result").html(xhtml);
+        console.log(xhtml, "null");
+      } else {
         $.each(data, function (key, val) {
           xhtml += `<div class="col-lg-12">
             <div class="single-news">
@@ -327,18 +366,15 @@ $(document).ready(function () {
                 ${val.title}
                </a>
                 </h2>
-  
             <p>
             ${val.description}
             </p>
           </div>
             </div>
-  
           `;
         });
-
         $("#news-search-result").html(xhtml);
       }
-    );
-  });
+    }
+  );
 });

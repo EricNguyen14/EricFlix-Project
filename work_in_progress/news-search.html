@@ -77,13 +77,12 @@
                 <option value="News">Tin tức</option>
               </select>
               <div id="search-type">
-              <input type="text" id="getUserValue" />
-              <a  href="news-search.html" id="getValueBtn"
-                >
+                <input type="text" id="getUserValue" />
+                <a id="getValueBtn">
                   <i class="icofont icofont-search"></i>
-              </a>
-            </div>
-            </form>           
+                </a>
+              </div>
+            </form>   
           </div>
           <div class="menu-area">
             <div class="responsive-menu"></div>
@@ -163,35 +162,7 @@
         <hr />
         <div class="row">
           <div class="col-lg-7" id="news-search-result">
-            <div
-              class="col-lg-12"
-              id="fav-news"
-              style="width: 100%; height: 100%; background-color: black"
-            >
-              <div class="single-news">
-                <div
-                  class="news-bg-1"
-                  style="background: url(${val.thumb}); background-size: cover"
-                ></div>
-                <div class="news-date">
-                  <h1>${val.publish_date}</h1>
-                </div>
-                <div class="news-content">
-                  <h2>
-                    <a
-                      href="${val.link}"
-                      target="blank;"
-                      onClick="funcViewArticle('${val.id}', '${val.title}', '${val.thumb}', '${val.link}')"
-                    >
-                      ${val.title}
-                    </a>
-                  </h2>
-
-                  <p>${val.description}</p>
-                </div>
-                <a href="#">Đọc thêm</a>
-              </div>
-            </div>
+            <h2>API chưa trả, vui lòng load lại trang</h2>
           </div>
           <div class="col-lg-5">
             <h3>Danh mục</h3>

@@ -426,6 +426,7 @@ option {
   display: inline-block;
 }
 #getValueBtn {
+  cursor: pointer;
   margin-right: 20px;
 }
 /*--------------------------------------

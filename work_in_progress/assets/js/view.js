@@ -19,7 +19,7 @@ showNewsInCategories = () => {
       "/articles?offset=0&limit=10&sort_by=id&sort_dir=desc",
     function (data) {
       let xhtml = "";
-      console.log(data);
+
       $.each(data, function (key, val) {
         let day = val.publish_date.split(" ")[0];
         let newdate = day.split("-");
@@ -29,7 +29,7 @@ showNewsInCategories = () => {
           <div class="single-news">
           <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
           <div id="fav-news" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
-          &#x02665 
+          &#x02665
         </div>
             <div class="news-date">
            ` +
@@ -42,7 +42,7 @@ showNewsInCategories = () => {
               ${val.title}
              </a>
               </h2>
-         
+
           <p>
           ${val.description}
           </p>
@@ -415,7 +415,6 @@ showMovies = () => {
       urlID +
       "/videos?offset=0&limit=21&sort_by=id&sort_dir=asc",
     function (data) {
-      console.log(data, "data");
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
@@ -430,9 +429,9 @@ showMovies = () => {
             />
             <a
               id="abc"
-              href="movie-details.html"
+              href="movie-details.html?id=${val.id}"
               class="popup-youtube"
-              onClick="playMovie('${val}')">
+              onclick="funcViewedVideos('${val.id}','${val.title}')">
               <i class="icofont icofont-ui-play"></i>
             </a>
           </div>
@@ -491,9 +490,10 @@ showActionMovie = () => {
 
         xhtml += `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
+  <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
     <div class="single-portfolio-img">
       <a
-        href="movie-details.html"
+        href="movie-details.html?id=${val.id}"
         class="popup-youtube"
         onclick="funcViewedVideos('${val.id}','${val.title}')">
 
@@ -529,10 +529,11 @@ showActionMovie2 = () => {
         xhtml += `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
     <div class="single-portfolio-img">
+    <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
       <a
-        href="movie-details.html"
+        href="movie-details.html?id=${val.id}"
         class="popup-youtube"
-        onClick="playMovie('${val.id}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}')">
         
         <img
         src="${thumbnailObj.medium.url}"
@@ -564,6 +565,7 @@ showLoveMovie = () => {
 
         xhtml += `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
+  <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
     <div class="single-portfolio-img">
       <img
         src="${thumbnailObj.medium.url}"
@@ -571,9 +573,9 @@ showLoveMovie = () => {
       />
       <a
         
-        href="movie-details.html"
+        href="movie-details.html?id=${val.id}"
         class="popup-youtube"
-        onClick="playMovie('${val}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -600,6 +602,7 @@ showCartoonMovie = () => {
 
         xhtml += `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
+  <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}}">
     <div class="single-portfolio-img">
       <img
         src="${thumbnailObj.medium.url}"
@@ -607,9 +610,9 @@ showCartoonMovie = () => {
       />
       <a
         
-        href="movie-details.html"
+        href="movie-details.html?id=${val.id}"
         class="popup-youtube"
-        onClick="playMovie('${val}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -637,6 +640,7 @@ showHorrorMovie = () => {
 
         xhtml += `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
+  <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}>
     <div class="single-portfolio-img">
       <img
         src="${thumbnailObj.medium.url}"
@@ -644,9 +648,9 @@ showHorrorMovie = () => {
       />
       <a
         
-        href="movie-details.html"
+        href="movie-details.html?id=${val.id}"
         class="popup-youtube"
-        onClick="playMovie('${val.id}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -674,6 +678,7 @@ showPsychoMovie = () => {
 
         xhtml += `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
+  <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
     <div class="single-portfolio-img">
       <img
         src="${thumbnailObj.medium.url}"
@@ -681,9 +686,9 @@ showPsychoMovie = () => {
       />
       <a
         
-        href="movie-details.html"
+        href="movie-details.html?id=${val.id}"
         class="popup-youtube"
-        onclick="playMovie('${val}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -711,6 +716,7 @@ showComedyMovie = () => {
 
         xhtml += `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
+  <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
     <div class="single-portfolio-img">
       <img
         src="${thumbnailObj.medium.url}"
@@ -718,9 +724,9 @@ showComedyMovie = () => {
       />
       <a
         
-        href="movie-details.html"
+        href="movie-details.html?id=${val.id}"
         class="popup-youtube"
-        onclick="playMovie('${val}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -747,6 +753,7 @@ showActionMovie3 = () => {
 
         xhtml += `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
+  <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
     <div class="single-portfolio-img">
       <img
         src="${thumbnailObj.medium.url}"
@@ -754,9 +761,9 @@ showActionMovie3 = () => {
       />
       <a
         
-        href="movie-details.html"
+        href="movie-details.html?id=${val.id}"
         class="popup-youtube"
-        onclick="playMovie('${val}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -783,6 +790,7 @@ showAmazingMovie = () => {
 
         xhtml += `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
+  <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
     <div class="single-portfolio-img">
       <img
         src="${thumbnailObj.medium.url}"
@@ -790,9 +798,9 @@ showAmazingMovie = () => {
       />
       <a
         
-        href="movie-details.html"
+        href="movie-details.html?id=${val.id}"
         class="popup-youtube"
-        onclick="playMovie('${val}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -809,23 +817,44 @@ showAmazingMovie = () => {
     }
   );
 };
+playVideos = () => {
+  let urlID = $.urlParam("id");
+  console.log(urlID, "hihi");
+
+  $.getJSON(
+    "http://apiforlearning.zendvn.com/api/videos/" + urlID + "",
+    function (data) {
+      console.log(data, "1");
+
+      let xhtml = "";
+      $.each(data, function (key, val) {
+        console.log(data, "2");
+
+        let data1 = val.iframe;
+        xhtml +=
+          `
+        <div class="row flexbox-center">
+        ` +
+          data1 +
+          `
+      </div>
+      <a href="#" class="theme-btn">
+        <img src="/work_in_progress/assets/icoin/icons8-love-26.png" /> Yêu
+        thích</a
+      >
+  			`;
+      });
+
+      $("#play-movies").html(xhtml);
+    }
+  );
+};
 showVideosViewed = (data2) => {};
 showVideoClick = (id) => {
   console.log(id);
 
-  //   const id = data2.map((object) => {
-  //     return object.id;
-  //   });
-  //   $.getJSON(
-  //     "http://apiforlearning.zendvn.com/api/videos/" + id + "",
-  //     function (data) {
-  //       console.log(data);
-  //       let xhtml =
-  //         `<div class="row flexbox-center">
-  //       ` +
-  //         data +
-  //         `
-  //   </div>`;
-  //     }
-  // );
+  // let seenId = $(".input-hidden").val();
+  if (id) {
+    $("#video-img-id").css("opacity", "0.5");
+  }
 };
