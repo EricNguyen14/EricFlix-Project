@@ -138,9 +138,11 @@ showArticleViewed = (data) => {
 showFavNews = (data1) => {
   let elemFavNews = $("#fav-news1");
   let xhtml = "";
-
-  $.each(data1, function (key, val) {
-    xhtml += `
+  if (data1.length === 0) {
+    xhtml = `<h3>Danh sách trống</h3>`;
+  } else {
+    $.each(data1, function (key, val) {
+      xhtml += `
       <div class="col-lg-12">     
       <div class="single-news">
       <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
@@ -162,7 +164,8 @@ showFavNews = (data1) => {
       </div>
 
     `;
-  });
+    });
+  }
   elemFavNews.html(xhtml);
 };
 
@@ -433,7 +436,7 @@ showMovies = () => {
               id="abc"
               href="movie-details.html?id=${val.id}"
               class="popup-youtube"
-              onclick="funcViewedVideos('${val.id}','${val.title}')">
+              onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
               <i class="icofont icofont-ui-play"></i>
             </a>
           </div>
@@ -498,7 +501,7 @@ showActionMovie = () => {
       <a
         href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
 
         <img
         id="video-img-id"
@@ -536,7 +539,7 @@ showActionMovie2 = () => {
       <a
       href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
         
         <img
         src="${thumbnailObj.medium.url}"
@@ -578,7 +581,7 @@ showLoveMovie = () => {
         
       href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -615,7 +618,7 @@ showCartoonMovie = () => {
         
       href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -653,7 +656,7 @@ showHorrorMovie = () => {
         
       href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -691,7 +694,7 @@ showPsychoMovie = () => {
         
       href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -729,7 +732,7 @@ showComedyMovie = () => {
         
       href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -766,7 +769,7 @@ showActionMovie3 = () => {
         
       href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -803,7 +806,7 @@ showActionMovie4 = () => {
         
       href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -841,9 +844,9 @@ showAmazingMovie = () => {
       />
       <a
         
-        href="movie-details.html?id=${val.id}"
+      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
         class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}')">
+        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
       
         <i class="icofont icofont-ui-play"></i>
       </a>
@@ -877,20 +880,100 @@ playVideos = () => {
         data1 +
         `
       </div>
-      <a href="#" class="theme-btn" onClick="favsVideo('${data.id}','${data.title}','${thumbnailObj.high.url}')">
+      <a href="#" class="theme-btn" onclick="favsVideo('${data.id}','${data.title}','${thumbnailObj.medium.url}',${data.playlist_id}')">
         <img src="/work_in_progress/assets/icoin/icons8-love-26.png" /> Yêu
         thích</a
       >
   			`;
-      console.log(xhtml, "html");
       $("#play-movie").html(xhtml);
     }
   );
 };
-showVideosViewed = (data2) => {};
+showVideosViewed = (data2) => {
+  let xhtml = "";
+
+  $.each(data2, function (key, val) {
+    xhtml += `
+    
+    <div class="col-lg-12" >
+    
+    <div class="news-bg-2" style=" background:url(${val.thumb});">
+    <a
+        
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+          >
+          <i class="icofont icofont-ui-play" style="transform:translateY(-40px)"></i>
+          </a>
+    <img
+            src="${val.thumb}"
+              alt="portfolio"
+            /></div>
+    <input type="hidden" id="${val.id}">
+    <div class="news-date1" onclick="funcDeleteVideo('${val.id}')"> 
+            <a href="#" >
+             xóa</a>
+            </div>
+            
+            <div>
+              <h5 ><a href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}" target=blank; >${val.title}</a></h5>
+            </div>
+            
+          
+           
+         
+          </div>
+          </div>
+            
+      </div>
+    
+      `;
+    $("#viewed-videos").html(xhtml);
+  });
+};
 showVideoClick = (id) => {
   // let seenId = $(".input-hidden").val();
   if (id) {
     $("#video-img-id").css("opacity", "0.5");
   }
+};
+
+showFavVideos = (data3) => {
+  let xhtml = "";
+  if (data1.length === 0) {
+    xhtml = `<h3>Danh sách trống</h3>`;
+  } else {
+    $.each(data3, function (key, val) {
+      xhtml += `
+      <div class="col-lg-6">
+      <div class="single-news">
+      <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
+      <div id="fav-video1" class="fav-news" onClick="funcDeleteFavVideo(${val.id})" >
+      <a href="#"><img src="https://img.icons8.com/emoji/48/000000/heart-suit.png"/></a>
+    </div>
+
+      </div>
+      <h4>
+        <a href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}">
+          ${val.title}
+         </a>
+          </h4>
+
+          <a
+
+          href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+          class="popup-youtube"
+        >
+
+          <i class="icofont icofont-ui-play"></i>
+        </a>
+   
+      </div>
+
+      </div>
+
+    `;
+    });
+  }
+  $("#videos-details").html(xhtml);
 };

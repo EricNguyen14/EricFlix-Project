@@ -50,8 +50,13 @@ deleteVideos = (id) => {
   return videos;
 };
 
-addVideo = (id, title, iframe) => {
-  let taskVideo = { id: id, title: title, iframe: iframe };
+addVideo = (id, title, thumb, playlist_id) => {
+  let taskVideo = {
+    id: id,
+    title: title,
+    thumb: thumb,
+    playlist_id: playlist_id,
+  };
 
   let videos = listVideos();
   videos.push(taskVideo);
@@ -119,11 +124,12 @@ deleteFavsVideos = (id) => {
   return films;
 };
 
-addFavsVideos = (id, title, thumb) => {
+addFavsVideos = (id, title, thumb, playlist_id) => {
   let taskFilm = {
     id: id,
     title: title,
     thumb: thumb,
+    playlist_id: playlist_id,
   };
 
   let films = listFavsVideos();

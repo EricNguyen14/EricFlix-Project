@@ -1211,7 +1211,13 @@ hr {
   color: #000;
   margin-bottom: 15px;
 }
-
+h5 {
+  margin-top: 15px;
+}
+h5 a {
+  margin-top: 20px;
+  font-size: 14px;
+}
 .buy-ticket-box h6 {
   color: #060606;
   text-align: center;
@@ -1654,7 +1660,10 @@ h3 {
   color: #fff;
   font-size: 50px;
 }
-
+#fav-video1 {
+  top: 0px;
+  right: 10px;
+}
 .heartActive {
   color: red !important;
 }

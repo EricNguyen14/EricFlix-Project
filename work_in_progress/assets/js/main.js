@@ -238,6 +238,8 @@ showFavNews(data1);
 let data2 = listVideos();
 showVideosViewed(data2);
 showVideoClick(data2);
+let data3 = listFavsVideos();
+showFavVideos(data3);
 // showFavVideos(data2);
 $(document).ready(function () {
   $("#reload").click(function () {

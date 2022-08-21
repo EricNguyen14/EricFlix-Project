@@ -6,13 +6,26 @@ funcDeleteTask = (id) => {
   }
 };
 
+funcDeleteVideo = (id) => {
+  let text = "DELETE!\nBạn chắc chắn muốn xoá phim đã xem ?";
+  if (confirm(text) == true) {
+    let videos = deleteVideos(id);
+    showVideosViewed(videos);
+  }
+};
+funcDeleteFavVideo = (id) => {
+  let text = "DELETE!\nBạn chắc chắn muốn xoá phim yêu thích ?";
+  if (confirm(text) == true) {
+    let films = deleteFavsVideos(id);
+    showFavVideos(films);
+  }
+};
 funcViewArticle = (id, title, thumb, link) => {
   let items = [];
   items = addItem(id, title, thumb, link);
   showArticleViewed();
 };
 funcFavNews = (id, title, thumb, link, heartColor) => {
-  $("#" + id + "").addclass(".heartActive");
   // let imgBgs = document.getElementById("fav-news");
   // console.log(imgBgs);
   const isExist = listFavs().some((el) => {
@@ -26,21 +39,22 @@ funcFavNews = (id, title, thumb, link, heartColor) => {
 
   showFavNews();
 };
-favsVideo = (id, title, thumb) => {
+favsVideo = (id, title, thumb, playlist_id) => {
+  let fimls = [];
   const isExist = listFavsVideos().some((el) => {
     return el?.id === id;
   });
   if (isExist) {
     deleteFavsVideo(id);
   } else {
-    addFavsVideo(id, title, thumb);
+    fimls = addFavsVideos(id, title, thumb, playlist_id);
   }
 
   showFavVideos();
 };
-funcViewedVideos = (id, title, iframe) => {
+funcViewedVideos = (id, title, thumb, playlist_id) => {
   let videos = [];
-  videos = addVideo(id, title, iframe);
+  videos = addVideo(id, title, thumb, playlist_id);
 
   showVideosViewed();
   showVideoClick(id);
