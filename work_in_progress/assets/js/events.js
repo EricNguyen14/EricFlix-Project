@@ -34,9 +34,11 @@ funcFavNews = (id, title, thumb, link, heartColor) => {
   if (isExist) {
     deleteFavs(id);
   } else {
+    console.log("clickhere", id);
     addFavs(id, title, thumb, link, heartColor);
   }
-
+  $("#d" + id + "").css("color", "red");
+  showHeartActive(id);
   showFavNews();
 };
 favsVideo = (id, title, thumb, playlist_id) => {

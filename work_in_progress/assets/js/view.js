@@ -21,16 +21,20 @@ showNewsInCategories = () => {
       let xhtml = "";
 
       $.each(data, function (key, val) {
+        let idheart = val.id;
         let day = val.publish_date.split(" ")[0];
         let newdate = day.split("-");
         let date = newdate[2] + "-" + newdate[1] + "-" + newdate[0];
+
         xhtml +=
           `<div class="col-lg-12">
           <div class="single-news">
           <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  
              <input type="hidden"  id="input-hidden" name="${val.title}" value="${val.id}">
 
-          <div id="${val.id}" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
+          <div id="d` +
+          idheart +
+          `" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
           &#x02665
         </div>
             <div class="news-date">
@@ -932,10 +936,14 @@ showVideosViewed = (data2) => {
   });
 };
 showVideoClick = (id) => {
+  console.log(id);
   // let seenId = $(".input-hidden").val();
   if (id) {
     $("#video-img-id").css("opacity", "0.5");
   }
+};
+showHeartActive = (id) => {
+  console.log(id);
 };
 
 showFavVideos = (data3) => {

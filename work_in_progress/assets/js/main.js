@@ -235,6 +235,7 @@ let data = listItems();
 showArticleViewed(data);
 let data1 = listFavs();
 showFavNews(data1);
+// showHeartActive(data1);
 let data2 = listVideos();
 showVideosViewed(data2);
 showVideoClick(data2);
