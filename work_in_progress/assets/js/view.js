@@ -433,8 +433,8 @@ showMovies = () => {
               alt="portfolio"
             />
             <a
-              id="abc"
-              href="movie-details.html?id=${val.id}"
+              
+              href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
               class="popup-youtube"
               onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
               <i class="icofont icofont-ui-play"></i>
@@ -880,7 +880,7 @@ playVideos = () => {
         data1 +
         `
       </div>
-      <a href="#" class="theme-btn" onclick="favsVideo('${data.id}','${data.title}','${thumbnailObj.medium.url}',${data.playlist_id}')">
+      <a href="#" class="theme-btn" onclick="favsVideo('${data.id}','${data.title}','${thumbnailObj.medium.url}','${data.playlist_id}')">
         <img src="/work_in_progress/assets/icoin/icons8-love-26.png" /> Yêu
         thích</a
       >
