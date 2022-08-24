@@ -36,6 +36,7 @@ funcFavNews = (id, title, thumb, link, heartColor) => {
   } else {
     console.log("clickhere", id);
     addFavs(id, title, thumb, link, heartColor);
+    alert(" Đã thêm vào trang yêu thích");
   }
   $("#d" + id + "").css("color", "red");
   showHeartActive(id);
@@ -50,6 +51,7 @@ favsVideo = (id, title, thumb, playlist_id) => {
     deleteFavsVideo(id);
   } else {
     fimls = addFavsVideos(id, title, thumb, playlist_id);
+    alert(" Đã thêm vào trang yêu thích");
   }
 
   showFavVideos();

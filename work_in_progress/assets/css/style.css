@@ -849,6 +849,42 @@ hr {
   );
   padding: 0px;
 }
+.news-date2 {
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+  width: 120px;
+  border-radius: 5%;
+  position: absolute;
+  left: 20px;
+  background: #f09819; /* Old browsers */
+  background: -moz-linear-gradient(
+    -45deg,
+    #f09819 0%,
+    #ef8128 34%,
+    #ec474c 64%,
+    #eb315a 100%
+  ); /* FF3.6-15 */
+
+  background: -webkit-linear-gradient(
+    -45deg,
+    #f09819 0%,
+    #ef8128 34%,
+    #ec474c 64%,
+    #eb315a 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    135deg,
+    #f09819 0%,
+    #ef8128 34%,
+    #ec474c 64%,
+    #eb315a 100%
+  );
+  padding: 0px;
+}
+
 .news-date1 a {
   line-height: 30px;
 }

@@ -956,17 +956,18 @@ showFavVideos = (data3) => {
       <div class="col-lg-6">
       <div class="single-news">
       <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  ">
-      <div id="fav-video1" class="fav-news" onClick="funcDeleteFavVideo(${val.id})" >
-      <a href="#"><img src="https://img.icons8.com/emoji/48/000000/heart-suit.png"/></a>
-    </div>
-
+      <div class="news-date2" onclick="funcDeleteFavVideo('${val.id}')"> 
+      
+       Xóa yêu thích
+      </div>
       </div>
       <h4>
         <a href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}">
           ${val.title}
          </a>
-          </h4>
-
+        
+          </h4> 
+        
           <a
 
           href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
