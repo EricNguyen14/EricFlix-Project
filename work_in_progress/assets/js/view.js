@@ -19,24 +19,38 @@ showNewsInCategories = () => {
       "/articles?offset=0&limit=10&sort_by=id&sort_dir=desc",
     function (data) {
       let xhtml = "";
-
       $.each(data, function (key, val) {
         let idheart = val.id;
+        console.log(idheart);
         let day = val.publish_date.split(" ")[0];
         let newdate = day.split("-");
         let date = newdate[2] + "-" + newdate[1] + "-" + newdate[0];
+        let newheartColor =
+          `
+        <div id="d` +
+          idheart +
+          `" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
+        &#x02665
+      </div>`;
+
+        let localId = listFavs();
+        for (let i = 0; i < localId.length; i++) {
+          if (localId[i].id == idheart) {
+            newheartColor = `
+            <div class="fav-news heartActive" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
+            &#x02665
+          </div>`;
+          }
+        }
 
         xhtml +=
           `<div class="col-lg-12">
           <div class="single-news">
           <div class="news-bg-1" style="background:url(${val.thumb}); background-size: cover;  
              <input type="hidden"  id="input-hidden" name="${val.title}" value="${val.id}">
-
-          <div id="d` +
-          idheart +
-          `" class="fav-news" onClick="funcFavNews('${val.id}', '${val.title}', '${val.thumb}', '${val.link},', '${val.heartColor},')" >
-          &#x02665
-        </div>
+            ` +
+          newheartColor +
+          `
             <div class="news-date">
            ` +
           date +
@@ -427,23 +441,49 @@ showMovies = () => {
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
+        let videoImg = `  <div class="single-portfolio-img">
+        <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+          <img 
+          src="${thumbnailObj.high.url}"
+            alt="portfolio"
+          />
+        
+          <a
+            
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+            onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+            <i class="icofont icofont-ui-play"></i>
+          </a>
+        </div>`;
+        let movieId = val.id;
+        let seenMovie = listVideos();
+        for (let i = 0; i < seenMovie.length; i++) {
+          if (seenMovie[i].id == movieId) {
+            videoImg = `  <div class="single-portfolio-img">
+            <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+              <img class="cssImg"
+              src="${thumbnailObj.high.url}"
+                alt="portfolio"
+              />
+              <h6 class=h6-videos> Phim đã xem</h6>
+              <a
+                
+                href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+                class="popup-youtube"
+                onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+                <i class="icofont icofont-ui-play"></i>
+              </a>
+            </div>`;
+          }
+        }
 
-        xhtml += `<div class="col-lg-4 col-md-4 col-sm-6 released">
+        xhtml +=
+          `<div class="col-lg-4 col-md-4 col-sm-6 released">
         <div class="single-portfolio">
-          <div class="single-portfolio-img">
-          <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
-            <img
-            src="${thumbnailObj.high.url}"
-              alt="portfolio"
-            />
-            <a
-              
-              href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
-              class="popup-youtube"
-              onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
-              <i class="icofont icofont-ui-play"></i>
-            </a>
-          </div>
+        ` +
+          videoImg +
+          `
           <div class="portfolio-content">
             <h2>${val.title}</h2>
            
@@ -497,24 +537,50 @@ showActionMovie = () => {
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
+        let videoImg = `  <div class="single-portfolio-img">
+        <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+          <img 
+          src="${thumbnailObj.high.url}"
+            alt="portfolio"
+          />
+        
+          <a
+            
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+            onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+            <i class="icofont icofont-ui-play"></i>
+          </a>
+        </div>`;
+        let movieId = val.id;
+        let seenMovie = listVideos();
+        for (let i = 0; i < seenMovie.length; i++) {
+          if (seenMovie[i].id == movieId) {
+            videoImg = `  <div class="single-portfolio-img">
+            <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+              <img class="cssImg"
+              src="${thumbnailObj.high.url}"
+                alt="portfolio"
+              />
+              <h6 class=h6-videos> Phim đã xem</h6>
+              <a
+                
+                href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+                class="popup-youtube"
+                onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+                <i class="icofont icofont-ui-play"></i>
+              </a>
+            </div>`;
+          }
+        }
 
-        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+        xhtml +=
+          `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
-    <div class="single-portfolio-img">
-      <a
-        href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
-        class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
-
-        <img
-        id="video-img-id"
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-        />
-        <i  class="icofont icofont-ui-play"></i>
-      </a>
-    </div>
+  ` +
+          videoImg +
+          `
     <div class="portfolio-content">
       <h2 style="font-size:14px">${val.title}</h2>
       
@@ -535,23 +601,49 @@ showActionMovie2 = () => {
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
-
-        xhtml += `<div class="col-md-4 col-sm-6 soon released">
-  <div class="single-portfolio">
-    <div class="single-portfolio-img">
-    <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
-      <a
-      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
-        class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+        let videoImg = `  <div class="single-portfolio-img">
+        <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+          <img 
+          src="${thumbnailObj.high.url}"
+            alt="portfolio"
+          />
         
-        <img
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-      />
-        <i class="icofont icofont-ui-play"></i>
-      </a>
-    </div>
+          <a
+            
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+            onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+            <i class="icofont icofont-ui-play"></i>
+          </a>
+        </div>`;
+        let movieId = val.id;
+        let seenMovie = listVideos();
+        for (let i = 0; i < seenMovie.length; i++) {
+          if (seenMovie[i].id == movieId) {
+            videoImg = `  <div class="single-portfolio-img">
+            <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+              <img class="cssImg"
+              src="${thumbnailObj.high.url}"
+                alt="portfolio"
+              />
+              <h6 class=h6-videos> Phim đã xem</h6>
+              <a
+                
+                href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+                class="popup-youtube"
+                onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+                <i class="icofont icofont-ui-play"></i>
+              </a>
+            </div>`;
+          }
+        }
+
+        xhtml +=
+          `<div class="col-md-4 col-sm-6 soon released">
+  <div class="single-portfolio">
+  ` +
+          videoImg +
+          `
     <div class="portfolio-content">
       <h2 style="font-size:14px">${val.title}</h2>
       
@@ -572,24 +664,50 @@ showLoveMovie = () => {
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
+        let videoImg = `  <div class="single-portfolio-img">
+        <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+          <img 
+          src="${thumbnailObj.high.url}"
+            alt="portfolio"
+          />
+        
+          <a
+            
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+            onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+            <i class="icofont icofont-ui-play"></i>
+          </a>
+        </div>`;
+        let movieId = val.id;
+        let seenMovie = listVideos();
+        for (let i = 0; i < seenMovie.length; i++) {
+          if (seenMovie[i].id == movieId) {
+            videoImg = `  <div class="single-portfolio-img">
+            <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+              <img class="cssImg"
+              src="${thumbnailObj.high.url}"
+                alt="portfolio"
+              />
+              <h6 class=h6-videos> Phim đã xem</h6>
+              <a
+                
+                href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+                class="popup-youtube"
+                onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+                <i class="icofont icofont-ui-play"></i>
+              </a>
+            </div>`;
+          }
+        }
 
-        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+        xhtml +=
+          `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
-    <div class="single-portfolio-img">
-      <img
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-      />
-      <a
-        
-      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
-        class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
-      
-        <i class="icofont icofont-ui-play"></i>
-      </a>
-    </div>
+  ` +
+          videoImg +
+          `
     <div class="portfolio-content">
       <h2 style="font-size:14px">${val.title}</h2>
       
@@ -609,24 +727,50 @@ showCartoonMovie = () => {
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
+        let videoImg = `  <div class="single-portfolio-img">
+        <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+          <img 
+          src="${thumbnailObj.high.url}"
+            alt="portfolio"
+          />
+        
+          <a
+            
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+            onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+            <i class="icofont icofont-ui-play"></i>
+          </a>
+        </div>`;
+        let movieId = val.id;
+        let seenMovie = listVideos();
+        for (let i = 0; i < seenMovie.length; i++) {
+          if (seenMovie[i].id == movieId) {
+            videoImg = `  <div class="single-portfolio-img">
+            <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+              <img class="cssImg"
+              src="${thumbnailObj.high.url}"
+                alt="portfolio"
+              />
+              <h6 class=h6-videos> Phim đã xem</h6>
+              <a
+                
+                href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+                class="popup-youtube"
+                onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+                <i class="icofont icofont-ui-play"></i>
+              </a>
+            </div>`;
+          }
+        }
 
-        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+        xhtml +=
+          `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}}">
-    <div class="single-portfolio-img">
-      <img
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-      />
-      <a
-        
-      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
-        class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
-      
-        <i class="icofont icofont-ui-play"></i>
-      </a>
-    </div>
+  ` +
+          videoImg +
+          `
     <div class="portfolio-content">
       <h2 style="font-size:14px">${val.title}</h2>
       
@@ -647,24 +791,50 @@ showHorrorMovie = () => {
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
+        let videoImg = `  <div class="single-portfolio-img">
+        <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+          <img 
+          src="${thumbnailObj.high.url}"
+            alt="portfolio"
+          />
+        
+          <a
+            
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+            onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+            <i class="icofont icofont-ui-play"></i>
+          </a>
+        </div>`;
+        let movieId = val.id;
+        let seenMovie = listVideos();
+        for (let i = 0; i < seenMovie.length; i++) {
+          if (seenMovie[i].id == movieId) {
+            videoImg = `  <div class="single-portfolio-img">
+            <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+              <img class="cssImg"
+              src="${thumbnailObj.high.url}"
+                alt="portfolio"
+              />
+              <h6 class=h6-videos> Phim đã xem</h6>
+              <a
+                
+                href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+                class="popup-youtube"
+                onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+                <i class="icofont icofont-ui-play"></i>
+              </a>
+            </div>`;
+          }
+        }
 
-        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+        xhtml +=
+          `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}>
-    <div class="single-portfolio-img">
-      <img
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-      />
-      <a
-        
-      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
-        class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
-      
-        <i class="icofont icofont-ui-play"></i>
-      </a>
-    </div>
+  ` +
+          videoImg +
+          `
     <div class="portfolio-content">
       <h2 style="font-size:14px">${val.title}</h2>
       
@@ -685,24 +855,50 @@ showPsychoMovie = () => {
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
+        let videoImg = `  <div class="single-portfolio-img">
+        <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+          <img 
+          src="${thumbnailObj.high.url}"
+            alt="portfolio"
+          />
+        
+          <a
+            
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+            onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+            <i class="icofont icofont-ui-play"></i>
+          </a>
+        </div>`;
+        let movieId = val.id;
+        let seenMovie = listVideos();
+        for (let i = 0; i < seenMovie.length; i++) {
+          if (seenMovie[i].id == movieId) {
+            videoImg = `  <div class="single-portfolio-img">
+            <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+              <img class="cssImg"
+              src="${thumbnailObj.high.url}"
+                alt="portfolio"
+              />
+              <h6 class=h6-videos> Phim đã xem</h6>
+              <a
+                
+                href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+                class="popup-youtube"
+                onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+                <i class="icofont icofont-ui-play"></i>
+              </a>
+            </div>`;
+          }
+        }
 
-        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+        xhtml +=
+          `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
-    <div class="single-portfolio-img">
-      <img
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-      />
-      <a
-        
-      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
-        class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
-      
-        <i class="icofont icofont-ui-play"></i>
-      </a>
-    </div>
+  ` +
+          videoImg +
+          `
     <div class="portfolio-content">
       <h2 style="font-size:14px">${val.title}</h2>
       
@@ -723,24 +919,50 @@ showComedyMovie = () => {
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
+        let videoImg = `  <div class="single-portfolio-img">
+        <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+          <img 
+          src="${thumbnailObj.high.url}"
+            alt="portfolio"
+          />
+        
+          <a
+            
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+            onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+            <i class="icofont icofont-ui-play"></i>
+          </a>
+        </div>`;
+        let movieId = val.id;
+        let seenMovie = listVideos();
+        for (let i = 0; i < seenMovie.length; i++) {
+          if (seenMovie[i].id == movieId) {
+            videoImg = `  <div class="single-portfolio-img">
+            <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+              <img class="cssImg"
+              src="${thumbnailObj.high.url}"
+                alt="portfolio"
+              />
+              <h6 class=h6-videos> Phim đã xem</h6>
+              <a
+                
+                href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+                class="popup-youtube"
+                onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+                <i class="icofont icofont-ui-play"></i>
+              </a>
+            </div>`;
+          }
+        }
 
-        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+        xhtml +=
+          `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
-    <div class="single-portfolio-img">
-      <img
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-      />
-      <a
-        
-      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
-        class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
-      
-        <i class="icofont icofont-ui-play"></i>
-      </a>
-    </div>
+  ` +
+          videoImg +
+          `
     <div class="portfolio-content">
       <h2 style="font-size:14px">${val.title}</h2>
       
@@ -760,24 +982,50 @@ showActionMovie3 = () => {
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
+        let videoImg = `  <div class="single-portfolio-img">
+        <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+          <img 
+          src="${thumbnailObj.high.url}"
+            alt="portfolio"
+          />
+        
+          <a
+            
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+            onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+            <i class="icofont icofont-ui-play"></i>
+          </a>
+        </div>`;
+        let movieId = val.id;
+        let seenMovie = listVideos();
+        for (let i = 0; i < seenMovie.length; i++) {
+          if (seenMovie[i].id == movieId) {
+            videoImg = `  <div class="single-portfolio-img">
+            <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+              <img class="cssImg"
+              src="${thumbnailObj.high.url}"
+                alt="portfolio"
+              />
+              <h6 class=h6-videos> Phim đã xem</h6>
+              <a
+                
+                href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+                class="popup-youtube"
+                onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+                <i class="icofont icofont-ui-play"></i>
+              </a>
+            </div>`;
+          }
+        }
 
-        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+        xhtml +=
+          `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
-    <div class="single-portfolio-img">
-      <img
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-      />
-      <a
-        
-      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
-        class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
-      
-        <i class="icofont icofont-ui-play"></i>
-      </a>
-    </div>
+  ` +
+          videoImg +
+          `
     <div class="portfolio-content">
       <h2 style="font-size:14px">${val.title}</h2>
       
@@ -797,24 +1045,50 @@ showActionMovie4 = () => {
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
+        let videoImg = `  <div class="single-portfolio-img">
+        <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+          <img 
+          src="${thumbnailObj.high.url}"
+            alt="portfolio"
+          />
+        
+          <a
+            
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+            onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+            <i class="icofont icofont-ui-play"></i>
+          </a>
+        </div>`;
+        let movieId = val.id;
+        let seenMovie = listVideos();
+        for (let i = 0; i < seenMovie.length; i++) {
+          if (seenMovie[i].id == movieId) {
+            videoImg = `  <div class="single-portfolio-img">
+            <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+              <img class="cssImg"
+              src="${thumbnailObj.high.url}"
+                alt="portfolio"
+              />
+              <h6 class=h6-videos> Phim đã xem</h6>
+              <a
+                
+                href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+                class="popup-youtube"
+                onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+                <i class="icofont icofont-ui-play"></i>
+              </a>
+            </div>`;
+          }
+        }
 
-        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+        xhtml +=
+          `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
-    <div class="single-portfolio-img">
-      <img
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-      />
-      <a
-        
-      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
-        class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
-      
-        <i class="icofont icofont-ui-play"></i>
-      </a>
-    </div>
+  ` +
+          videoImg +
+          `
     <div class="portfolio-content">
       <h2 style="font-size:14px">${val.title}</h2>
       
@@ -837,24 +1111,50 @@ showAmazingMovie = () => {
       let xhtml = "";
       $.each(data, function (key, val) {
         let thumbnailObj = JSON.parse(val.thumbnail);
+        let videoImg = `  <div class="single-portfolio-img">
+        <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+          <img 
+          src="${thumbnailObj.high.url}"
+            alt="portfolio"
+          />
+        
+          <a
+            
+            href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+            class="popup-youtube"
+            onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+            <i class="icofont icofont-ui-play"></i>
+          </a>
+        </div>`;
+        let movieId = val.id;
+        let seenMovie = listVideos();
+        for (let i = 0; i < seenMovie.length; i++) {
+          if (seenMovie[i].id == movieId) {
+            videoImg = `  <div class="single-portfolio-img">
+            <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val}">
+              <img class="cssImg"
+              src="${thumbnailObj.high.url}"
+                alt="portfolio"
+              />
+              <h6 class=h6-videos> Phim đã xem</h6>
+              <a
+                
+                href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
+                class="popup-youtube"
+                onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
+                <i class="icofont icofont-ui-play"></i>
+              </a>
+            </div>`;
+          }
+        }
 
-        xhtml += `<div class="col-md-4 col-sm-6 soon released">
+        xhtml +=
+          `<div class="col-md-4 col-sm-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
-    <div class="single-portfolio-img">
-      <img
-        src="${thumbnailObj.medium.url}"
-        alt="portfolio"
-      />
-      <a
-        
-      href="movie-details.html?id=${val.id}&playlist-id=${val.playlist_id}"
-        class="popup-youtube"
-        onclick="funcViewedVideos('${val.id}','${val.title}','${thumbnailObj.medium.url}','${val.playlist_id}')">
-      
-        <i class="icofont icofont-ui-play"></i>
-      </a>
-    </div>
+  ` +
+          videoImg +
+          `
     <div class="portfolio-content">
       <h2 style="font-size:14px">${val.title}</h2>
       

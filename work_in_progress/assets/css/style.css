@@ -1704,7 +1704,15 @@ h3 {
 .heartActive {
   color: red !important;
 }
-
+.single-portfolio-img .cssImg {
+  filter: blur(4px);
+}
+.h6-videos {
+  font-size: 18px;
+  top: 50%;
+  position: absolute;
+  left: 35%;
+}
 .fav-news {
   cursor: pointer;
   position: absolute;
