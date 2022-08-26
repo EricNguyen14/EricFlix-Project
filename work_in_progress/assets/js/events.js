@@ -32,11 +32,15 @@ funcFavNews = (id, title, thumb, link, heartColor) => {
     return el?.id === id;
   });
   if (isExist) {
-    deleteFavs(id);
+    if (confirm(" Bạn có muốn xóa yêu thích")) {
+      alert("Đã xóa");
+      deleteFavs(id);
+      $("#d" + id + "").css("color", "white");
+    } else {
+    }
   } else {
     console.log("clickhere", id);
     addFavs(id, title, thumb, link, heartColor);
-    alert(" Đã thêm vào trang yêu thích");
   }
   $("#d" + id + "").css("color", "red");
   showHeartActive(id);
