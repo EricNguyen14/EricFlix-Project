@@ -57,84 +57,127 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
-    <!-- Page loader -->
-    <div id="preloader"></div>
-    <!-- header section start -->
-    <header class="header">
-      <div class="container">
-        <div class="header-area">
-          <div class="logo">
-            <a href="index.html"
-              ><img src="assets/img/Zendflix-1 (1).png" alt="logo"
-            /></a>
-          </div>
-          <div class="header-right">
-            <form action="#">
-              <select id="select-type">
-                <option value="Movies">Phim</option>
+  <body><div id="preloader"></div>
 
-                <option value="News">Tin tức</option>
-              </select>
-              <div id="search-type">
-                <input type="text" id="getUserValue" />
-                <a id="getValueBtn">
-                  <i class="icofont icofont-search"></i>
-                </a>
-              </div>
-            </form>   
-          </div>
-          <div class="menu-area">
-            <div class="responsive-menu"></div>
-            <div class="mainmenu">
-              <ul id="primary-menu">
-                <li>
-                  <a href="index.html">Trang chủ</a>
-                </li>
-                <li>
-                  <a href="home-movies.html"> Phim</a>
-                  <ul id="movies-category">
-                    <li></li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#"
-                    >Thể loại <i class="icofont icofont-simple-down"></i
-                  ></a>
-                  <ul>
-                    <li>
-                      <a href="movies.html?id=79">Phim hành động</a>
-                    </li>
-                    <li><a href="movies.html?id=80"> Phim viễn Tưởng</a></li>
-                    <li><a href="movies.html?id=81"> Phim tâm lý</a></li>
-                    <li><a href="movies.html?id=82">Phim hoạt hình</a></li>
-                    <li><a href="movies.html?id=83">Phim hài</a></li>
-                    <li><a href="movies.html?id=84">Phim tình cảm</a></li>
-                    <li><a href="movies.html?id=85">Phim kinh dị</a></li>
-                  </ul>
-                </li>
-                <li></li>
-                <li>
-                  <a class="active" href="news.html"
-                    >Tin tức <i class="icofont icofont-simple-down"></i>
-                    <ul id="news"></ul>
-                  </a>
-                </li>
-                <li>
-                  <a href="#"
-                    >Yêu thích <i class="icofont icofont-simple-down"></i
-                  ></a>
-                  <ul>
-                    <li><a href="favourite-news.html">Tin tức yêu thích</a></li>
-                    <li><a href="favourite-film.html">Phim yêu thích</a></li>
-                  </ul>
-                </li>
-              </ul>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a href="index.html" class="navbar-brand"
+        ><img src="assets/img/Zendflix-1 (1).png" alt="logo" width="100"
+      /></a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link " href="index.html">
+              Trang chủ <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="home-movies.html">Phim</a>
+            <ul id="movies-category">
+              <li></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="moviesDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Thể loại
+            </a>
+            <div class="dropdown-menu" aria-labelledby="moviesDropdown">
+              <a class="dropdown-item" href="movies.html?id=79"
+                >Phim hành động
+              </a>
+              <a class="dropdown-item" href="movies.html?id=80">
+                Phim viễn Tưởng
+              </a>
+              <a class="dropdown-item" href="movies.html?id=81">Phim tâm lý</a>
+              <a class="dropdown-item" href="movies.html?id=82"
+                >Phim hoạt hình
+              </a>
+              <a class="dropdown-item" href="movies.html?id=83">Phim hài</a>
+              <a class="dropdown-item" href="movies.html?id=84"
+                >Phim tình cảm
+              </a>
+              <a class="dropdown-item" href="movies.html?id=85">Phim kinh dị</a>
             </div>
-          </div>
-        </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+              href="news.html"
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="newsDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Tin tức
+            
+            </a>
+            <div
+              class="dropdown-menu"
+              id="news"
+              aria-labelledby="newsDropdown"
+            ></div>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="favouriteDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              >Yêu thích
+            </a>
+            <div class="dropdown-menu" aria-labelledby="favouriteDropdown">
+              <a class="dropdown-item" href="favourite-film.html"
+                >Phim yêu thích</a
+              >
+              <a class="dropdown-item" href="favourite-news.html"
+                >Tin tức yêu thích</a
+              >
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            id="getUserValue"
+          />
+          <a
+            class="btn btn-outline-success my-2 my-sm-0"
+            id="getValueBtn"
+          >
+            <i class="icofont icofont-search"></i>
+          </a>
+        </form>
       </div>
-    </header>
+    </nav>
+
     <!-- header section end -->
     <!-- breadcrumb area start -->
     <section class="breadcrumb-area">

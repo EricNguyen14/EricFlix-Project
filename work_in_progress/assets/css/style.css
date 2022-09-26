@@ -88,6 +88,9 @@ iframe {
 .movie-detail-ifram iframe {
   height: 600px !important;
 }
+.active {
+  color: red;
+}
 a,
 a:hover,
 a:focus,
@@ -142,7 +145,6 @@ input[type="submit"],
 button[type="submit"] {
   width: auto;
   color: #666;
-  padding: 4px 15px;
 }
 textarea:focus {
   outline: none !important;
@@ -296,43 +298,22 @@ input::-webkit-input-placeholder {
 -------- HEADER AREA CSS START --------
 ---------------------------------------*/
 .header {
-  height: 90px;
-  background-color: #262832;
-  padding: 18px 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 99;
-  transform: translateY(-25px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .header-area {
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(12, 1fr);
-  align-items: center;
-  grid-gap: 20px;
-  transform: translateY(-20px);
+  display: flex;
 }
 .logo {
-  grid-column: span 2;
-  grid-row: span 2;
-  padding-right: 15px;
-  transform: translateY(-32px);
 }
 .header-right {
-  margin-top: 40px;
-  grid-column: span 10;
-  text-align: right;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
 .menu-area {
-  transform: translate3d(-320px, -81px, 0px);
-
-  display: inline;
-  grid-column: span 10;
 }
 .mainmenu {
   text-align: right;
@@ -381,50 +362,52 @@ input::-webkit-input-placeholder {
 .mainmenu li a:hover {
   color: #eb315a;
 }
-.header-right form {
-  transform: translate3d(166px, 1px, 10px);
 
+.nav-link {
+  color: white !important;
+}
+
+.navbar-toggler {
+  background-color: white !important;
+}
+
+.search {
   display: flex;
-  max-width: 380px;
-  border: 1px solid #eee;
-  border-radius: 30px;
-  margin-left: auto;
 }
-.header-right form button {
-  background: transparent;
+
+.searchTerm {
+  height: 30px !important;
+  border: 3px solid #00b4cc;
+  border-right: none;
+  padding: 0 !important;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: white;
+}
+
+.searchTerm:focus {
+  color: white;
+}
+
+.searchButton {
+  width: 40px;
+  height: 30px;
+  text-align: center;
   color: #fff;
-  border: none;
-  padding-right: 10px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
 }
+
 option {
   color: #000;
-}
-
-.header-right form select {
-  background: url("../img/select-icon.png") no-repeat right center;
-  color: #fff;
-  padding: 0 20px 0 30px;
-  border: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.header-right form input {
-  width: auto;
-  background: transparent;
-  color: #fff;
-  border: none;
-  margin: 0;
-  border-left: 1px solid #ddd;
-  margin-left: 20px;
 }
 
 .header-right ul li a:hover {
   color: #eb315a;
 }
 .header-right ul li {
-  padding: 8px 0 0;
   margin-left: 15px;
   display: inline-block;
 }

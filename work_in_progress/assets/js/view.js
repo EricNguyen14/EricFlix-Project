@@ -1,11 +1,11 @@
 //  show new start
 showCategoriesInMenu = () => {
-  let elmAreaCategoryNews = $("ul#news");
+  let elmAreaCategoryNews = $("div#news");
   const API_PREFIX = "http://apiforlearning.zendvn.com/api/";
   $.getJSON(API_PREFIX + "categories_news", function (data) {
     let xhtml = "";
     $.each(data, function (key, val) {
-      xhtml += `<li><a href="category.html?id=${val.id}">- ${val.name}</a></li>`;
+      xhtml += `<a href="category.html?id=${val.id}" class="dropdown-item">${val.name}</a>`;
     });
     elmAreaCategoryNews.html(xhtml);
   });
