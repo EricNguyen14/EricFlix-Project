@@ -273,7 +273,7 @@ showNews1Index = () => {
       let xhtml = "";
 
       $.each(data, function (key, val) {
-        xhtml += `<div class="col-lg-3 col-md-4 col-sm-6">
+        xhtml += `<div class="col-lg-3 col-md-3 col-sm-4 col-6">
       <div class="single-portfolio">
       <div class="single-portfolio-img">
       
@@ -479,7 +479,7 @@ showMovies = () => {
         }
 
         xhtml +=
-          `<div class="col-lg-4 col-md-4 col-sm-6 released">
+          `<div class="col-lg-4 col-md-4 col-sm-6 col-6 released">
         <div class="single-portfolio">
         ` +
           videoImg +
@@ -511,7 +511,7 @@ showSlideMovies = () => {
         console.log(data, "hihi");
 
         xhtml += `<div class="row hero-area-slide">
-        <div class="col-lg-12 col-md-5">
+        <div class="col-lg-12 col-md-12 col-12 col-sm-12">
           <div class="hero-area-content">
             ${data1}
           </div>
@@ -575,7 +575,7 @@ showActionMovie = () => {
         }
 
         xhtml +=
-          `<div class="col-md-4 col-sm-6 soon released">
+          `<div class="col-md-4 col-sm-4 col-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
   ` +
@@ -639,7 +639,7 @@ showActionMovie2 = () => {
         }
 
         xhtml +=
-          `<div class="col-md-4 col-sm-6 soon released">
+          `<div class="col-md-4 col-sm-4 col-6 soon released">
   <div class="single-portfolio">
   ` +
           videoImg +
@@ -702,7 +702,7 @@ showLoveMovie = () => {
         }
 
         xhtml +=
-          `<div class="col-md-4 col-sm-6 soon released">
+          `<div class="col-md-4 col-sm-4 col-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
   ` +
@@ -765,7 +765,7 @@ showCartoonMovie = () => {
         }
 
         xhtml +=
-          `<div class="col-md-4 col-sm-6 soon released">
+          `<div class="col-md-4 col-sm-4 col-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}}">
   ` +
@@ -829,7 +829,7 @@ showHorrorMovie = () => {
         }
 
         xhtml +=
-          `<div class="col-md-4 col-sm-6 soon released">
+          `<div class="col-md-4 col-sm-4 col-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}>
   ` +
@@ -893,7 +893,7 @@ showPsychoMovie = () => {
         }
 
         xhtml +=
-          `<div class="col-md-4 col-sm-6 soon released">
+          `<div class="col-md-4 col-sm-4 col-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
   ` +
@@ -957,7 +957,7 @@ showComedyMovie = () => {
         }
 
         xhtml +=
-          `<div class="col-md-4 col-sm-6 soon released">
+          `<div class="col-md-4 col-sm-4 col-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
   ` +
@@ -1020,7 +1020,7 @@ showActionMovie3 = () => {
         }
 
         xhtml +=
-          `<div class="col-md-4 col-sm-6 soon released">
+          `<div class="col-md-4 col-sm-4 col-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
   ` +
@@ -1083,7 +1083,7 @@ showActionMovie4 = () => {
         }
 
         xhtml +=
-          `<div class="col-md-4 col-sm-6 soon released">
+          `<div class="col-md-4 col-sm-4 col-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
   ` +
@@ -1149,7 +1149,7 @@ showAmazingMovie = () => {
         }
 
         xhtml +=
-          `<div class="col-md-4 col-sm-6 soon released">
+          `<div class="col-md-4 col-sm-4 col-6 soon released">
   <div class="single-portfolio">
   <input type="hidden" class=input-hidden id="${val.id}" name="${val.title}" value="${val.id}">
   ` +
